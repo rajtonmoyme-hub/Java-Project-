@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.DashboardController">
+<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.DashboardController">
 
     <!-- LEFT SIDEBAR -->
     <left>
@@ -142,100 +142,100 @@
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
                     </columnConstraints>
 
-                    <!-- Card 1 -->
-                    <HBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <!-- Card 1 (Green) -->
+                    <HBox styleClass="card-main, card-main-green" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="মোট পণ্য" />
-                            <Label styleClass="card-value" text="8" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="সক্রিয় পণ্য" />
+                            <Label styleClass="card-main-title" text="মোট পণ্য" />
+                            <Label fx:id="lblTotalProducts" styleClass="card-main-value" text="0" />
+                            <Label styleClass="card-main-subtext" text="সক্রিয় পণ্য" />
                         </VBox>
-                        <StackPane styleClass="icon-box, green">
-                            <SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="#418c4b" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" />
                         </StackPane>
                     </HBox>
 
-                    <!-- Card 2 -->
-                    <HBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <!-- Card 2 (Red) -->
+                    <HBox styleClass="card-main, card-main-red" GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="গড় মূল্য পরিবর্তন" />
-                            <Label styleClass="card-value" text="9.3%" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #DC3545;" text="↓ বৃদ্ধি গত ৭ দিনে" />
+                            <Label styleClass="card-main-title" text="গড় মূল্য পরিবর্তন" />
+                            <Label fx:id="lblPriceChange" styleClass="card-main-value" text="0%" />
+                            <Label styleClass="card-main-subtext" text="↑ বৃদ্ধি গত ৭ দিনে" />
                         </VBox>
-                        <StackPane styleClass="icon-box, red">
-                            <SVGPath content="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="#b46349" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="white" />
                         </StackPane>
                     </HBox>
 
-                    <!-- Card 3 -->
-                    <HBox styleClass="card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <!-- Card 3 (Orange) -->
+                    <HBox styleClass="card-main, card-main-orange" GridPane.columnIndex="2" GridPane.rowIndex="0">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="জরুরি অ্যালার্ট" />
-                            <Label styleClass="card-value" text="3" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="মোট অ্যালার্ট" />
+                            <Label styleClass="card-main-title" text="জরুরি অ্যালার্ট" />
+                            <Label fx:id="lblAlertCount" styleClass="card-main-value" text="0" />
+                            <Label styleClass="card-main-subtext" text="মোট অ্যালার্ট" />
                         </VBox>
-                        <StackPane styleClass="icon-box, red">
-                            <SVGPath content="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="#b15959" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="white" />
                         </StackPane>
                     </HBox>
 
-                    <!-- Card 4 -->
-                    <HBox styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                    <!-- Card 4 (Cyan) -->
+                    <HBox styleClass="card-main, card-main-cyan" GridPane.columnIndex="3" GridPane.rowIndex="0">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="গুদাম ব্যবহার" />
-                            <Label styleClass="card-value" text="77%" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="৪টি গুদাম" />
+                            <Label styleClass="card-main-title" text="গুদাম ব্যবহার" />
+                            <Label fx:id="lblWarehouseUsage" styleClass="card-main-value" text="0%" />
+                            <Label styleClass="card-main-subtext" text="৪টি গুদাম" />
                         </VBox>
-                        <StackPane styleClass="icon-box, purple">
-                            <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="#104e5e" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="white" />
                         </StackPane>
                     </HBox>
 
                     <!-- Row 2 -->
-                    <!-- Card 5 -->
-                    <HBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <!-- Card 5 (Blue) -->
+                    <HBox styleClass="card-main, card-main-blue" GridPane.columnIndex="0" GridPane.rowIndex="1">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="মোট মজুদ" />
-                            <Label styleClass="card-value" text="29.2K" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="মেট্রিক টন" />
+                            <Label styleClass="card-main-title" text="মোট মজুদ" />
+                            <Label fx:id="lblTotalStock" styleClass="card-main-value" text="0" />
+                            <Label styleClass="card-main-subtext" text="মেট্রিক টন" />
                         </VBox>
-                        <StackPane styleClass="icon-box, blue">
-                            <SVGPath content="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" fill="#538144" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" fill="white" />
                         </StackPane>
                     </HBox>
 
-                    <!-- Card 6 -->
-                    <HBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <!-- Card 6 (Teal - Functional) -->
+                    <HBox styleClass="card-main, card-main-teal" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="নিবন্ধিত কৃষক" />
-                            <Label styleClass="card-value" text="5" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="সক্রিয় কৃষক" />
+                            <Label styleClass="card-main-title" text="নিবন্ধিত কৃষক" />
+                            <Label fx:id="lblFarmerCount" styleClass="card-main-value" text="0" />
+                            <Label styleClass="card-main-subtext" text="সরাসরি ডাটা থেকে" />
                         </VBox>
-                        <StackPane styleClass="icon-box, cyan">
-                            <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#3d47ae" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white" />
                         </StackPane>
                     </HBox>
 
-                    <!-- Card 7 -->
-                    <HBox styleClass="card" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <!-- Card 7 (Purple) -->
+                    <HBox styleClass="card-main, card-main-purple" GridPane.columnIndex="2" GridPane.rowIndex="1">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="আমদানি" />
-                            <Label styleClass="card-value" text="12.5K" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="এই মাসে (MT)" />
+                            <Label styleClass="card-main-title" text="আমদানি" />
+                            <Label fx:id="lblImportVolume" styleClass="card-main-value" text="0" />
+                            <Label styleClass="card-main-subtext" text="এই মাসে (MT)" />
                         </VBox>
-                        <StackPane styleClass="icon-box, purple">
-                            <SVGPath content="M15 6H9v2h6V6zm0 4H9v2h6v-2zm0 4H9v2h6v-2zM4 2v20h16V2H4zm14 18H6V4h12v16z" fill="#5973c7" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M15 6H9v2h6V6zm0 4H9v2h6v-2zm0 4H9v2h6v-2zM4 2v20h16V2H4zm14 18H6V4h12v16z" fill="white" />
                         </StackPane>
                     </HBox>
 
-                    <!-- Card 8 -->
-                    <HBox styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <!-- Card 8 (Indigo) -->
+                    <HBox styleClass="card-main, card-main-indigo" GridPane.columnIndex="3" GridPane.rowIndex="1">
                         <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-title" text="বাজার স্থিতিশীলতা" />
-                            <Label styleClass="card-value" text="72%" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="জাতীয় গড়" />
+                            <Label styleClass="card-main-title" text="বাজার স্থিতিশীলতা" />
+                            <Label fx:id="lblStability" styleClass="card-main-value" text="0%" />
+                            <Label styleClass="card-main-subtext" text="জাতীয় গড়" />
                         </VBox>
-                        <StackPane styleClass="icon-box, green">
-                            <SVGPath content="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="#383b9e" scaleX="0.8" scaleY="0.8" />
+                        <StackPane styleClass="icon-box-dash">
+                            <SVGPath content="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="white" />
                         </StackPane>
                     </HBox>
                     <rowConstraints>
@@ -243,7 +243,6 @@
                         <RowConstraints />
                     </rowConstraints>
                 </GridPane>
-
                 <!-- Charts Section -->
                 <HBox spacing="20">
                     <!-- Left Chart -->

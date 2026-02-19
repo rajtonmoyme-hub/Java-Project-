@@ -1,11 +1,16 @@
 package com.example.foodprice;
 
+import java.io.Serializable;
+
 /**
  * Represents a farmer in the food price / farmer management system.
- * This class is used to store farmer details and is serialized/deserialized
- * to/from JSON using Gson.
+ * Updated to implement Serializable for file persistence.
  */
-public class Farmer {
+public class Farmer implements Serializable {
+
+    // serialVersionUID ensures that saved data remains compatible
+    // even if you change the class slightly later.
+    private static final long serialVersionUID = 1L;
 
     private String name;
     private String phone;
@@ -16,7 +21,7 @@ public class Farmer {
     private int score;
     private boolean verified;
 
-    // Default constructor - REQUIRED for Gson deserialization
+    // Default constructor - REQUIRED for Gson and some serialization frameworks
     public Farmer() {
     }
 
@@ -38,76 +43,30 @@ public class Farmer {
     // Getters
     // ───────────────────────────────────────────────
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getLandAmount() {
-        return landAmount;
-    }
-
-    public String getCrops() {
-        return crops;
-    }
-
-    public String getTotalSales() {
-        return totalSales;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public boolean isVerified() {
-        return verified;
-    }
+    public String getName() { return name; }
+    public String getPhone() { return phone; }
+    public String getLocation() { return location; }
+    public String getLandAmount() { return landAmount; }
+    public String getCrops() { return crops; }
+    public String getTotalSales() { return totalSales; }
+    public int getScore() { return score; }
+    public boolean isVerified() { return verified; }
 
     // ───────────────────────────────────────────────
     // Setters
     // ───────────────────────────────────────────────
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setLandAmount(String landAmount) {
-        this.landAmount = landAmount;
-    }
-
-    public void setCrops(String crops) {
-        this.crops = crops;
-    }
-
-    public void setTotalSales(String totalSales) {
-        this.totalSales = totalSales;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
+    public void setName(String name) { this.name = name; }
+    public void setPhone(String phone) { this.phone = phone; }
+    public void setLocation(String location) { this.location = location; }
+    public void setLandAmount(String landAmount) { this.landAmount = landAmount; }
+    public void setCrops(String crops) { this.crops = crops; }
+    public void setTotalSales(String totalSales) { this.totalSales = totalSales; }
+    public void setScore(int score) { this.score = score; }
+    public void setVerified(boolean verified) { this.verified = verified; }
 
     // ───────────────────────────────────────────────
-    // Optional: toString() - very useful for debugging / logging
+    // Optional: toString() - Useful for debugging
     // ───────────────────────────────────────────────
 
     @Override
@@ -116,20 +75,7 @@ public class Farmer {
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", location='" + location + '\'' +
-                ", landAmount='" + landAmount + '\'' +
-                ", crops='" + crops + '\'' +
-                ", totalSales='" + totalSales + '\'' +
-                ", score=" + score +
                 ", verified=" + verified +
                 '}';
     }
-
-    // Optional: equals() and hashCode() if you plan to use Farmer in Sets / Maps
-    // (not required for basic JSON save/load or your current UI usage)
-
-    // @Override
-    // public boolean equals(Object o) { ... }
-    //
-    // @Override
-    // public int hashCode() { ... }
 }

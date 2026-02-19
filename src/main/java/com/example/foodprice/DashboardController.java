@@ -9,75 +9,70 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
 
     @FXML private LineChart<String, Number> priceChart;
 
-    // Summary Cards Labels (যাতে আপনি কোড থেকে সংখ্যা বদলাতে পারেন)
-    @FXML private Label lblTotalProducts;
-    @FXML private Label lblPriceChange;
-    @FXML private Label lblAlertCount;
-    @FXML private Label lblWarehouseUsage;
-    @FXML private Label lblTotalStock;
-    @FXML private Label lblFarmerCount;
-    @FXML private Label lblImportVolume;
-    @FXML private Label lblStability;
+    // Summary Cards Labels - Functional IDs
+    @FXML private Label lblTotalProducts;    // Card 1
+    @FXML private Label lblPriceChange;     // Card 2
+    @FXML private Label lblAlertCount;      // Card 3
+    @FXML private Label lblWarehouseUsage;  // Card 4
+    @FXML private Label lblTotalStock;      // Card 5
+    @FXML private Label lblFarmerCount;     // Card 6
+    @FXML private Label lblImportVolume;    // Card 7
+    @FXML private Label lblStability;       // Card 8
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initChart();
-        // এখানে আপনি চাইলে ডিফল্ট কিছু ভ্যালু সেট করতে পারেন
-        // lblTotalProducts.setText("১০");
+        refreshStatistics(); // কার্ডের তথ্যগুলো আপডেট করবে
+    }
+
+    /**
+     * কার্ডের ভ্যালুগুলো রিয়েল-টাইমে আপডেট করার লজিক
+     */
+    private void refreshStatistics() {
+        // ১. কৃষকের সংখ্যা সরাসরি ডাটা ফাইল থেকে লোড করা হচ্ছে
+        List<Farmer> farmers =  DataManager.loadFarmers();
+        lblFarmerCount.setText(String.valueOf(farmers.size()));
+
+        // ২. অন্যান্য ভ্যালুগুলো ডিফল্ট সেট করা (আপনার অ্যাডমিন প্যানেলের লজিক অনুযায়ী এখানে আপডেট হবে)
+        lblTotalProducts.setText("১২");
+        lblPriceChange.setText("৯.৩%");
+        lblAlertCount.setText("৩");
+        lblWarehouseUsage.setText("৭৭%");
+        lblTotalStock.setText("২৯.২K");
+        lblImportVolume.setText("১২.৫K");
+        lblStability.setText("৭২%");
     }
 
     private void initChart() {
+        priceChart.getData().clear();
         XYChart.Series<String, Number> riceSeries = new XYChart.Series<>();
         riceSeries.setName("চাল");
         riceSeries.getData().add(new XYChart.Data<>("জানু", 108));
-        riceSeries.getData().add(new XYChart.Data<>("ফেব", 110));
-        riceSeries.getData().add(new XYChart.Data<>("মার্চ", 112));
-        riceSeries.getData().add(new XYChart.Data<>("এপ্রিল", 115));
-        riceSeries.getData().add(new XYChart.Data<>("মে", 114));
         riceSeries.getData().add(new XYChart.Data<>("জুন", 113));
 
         XYChart.Series<String, Number> oilSeries = new XYChart.Series<>();
         oilSeries.setName("তেল");
         oilSeries.getData().add(new XYChart.Data<>("জানু", 160));
-        oilSeries.getData().add(new XYChart.Data<>("ফেব", 162));
-        oilSeries.getData().add(new XYChart.Data<>("মার্চ", 165));
-        oilSeries.getData().add(new XYChart.Data<>("এপ্রিল", 168));
-        oilSeries.getData().add(new XYChart.Data<>("মে", 165));
         oilSeries.getData().add(new XYChart.Data<>("জুন", 164));
 
-        XYChart.Series<String, Number> onionSeries = new XYChart.Series<>();
-        onionSeries.setName("পেঁয়াজ");
-        onionSeries.getData().add(new XYChart.Data<>("জানু", 60));
-        onionSeries.getData().add(new XYChart.Data<>("ফেব", 65));
-        onionSeries.getData().add(new XYChart.Data<>("মার্চ", 70));
-        onionSeries.getData().add(new XYChart.Data<>("এপ্রিল", 75));
-        onionSeries.getData().add(new XYChart.Data<>("মে", 55));
-        onionSeries.getData().add(new XYChart.Data<>("জুন", 50));
-
-        priceChart.getData().addAll(riceSeries, oilSeries, onionSeries);
+        priceChart.getData().addAll(riceSeries, oilSeries);
     }
 
-    // Navigation Methods
-    @FXML
-    void goToProducts(ActionEvent event) { navigate(event, "/products.fxml"); }
-
-    @FXML
-    void goToWarehouse(ActionEvent event) { navigate(event, "/warehouse.fxml"); }
-
-    @FXML
-    void goToFarmers(ActionEvent event) { navigate(event, "/farmers.fxml"); }
+    @FXML void goToProducts(ActionEvent event) { navigate(event, "/products.fxml"); }
+    @FXML void goToWarehouse(ActionEvent event) { navigate(event, "/warehouse.fxml"); }
+    @FXML void goToFarmers(ActionEvent event) { navigate(event, "/farmers.fxml"); }
 
     private void navigate(ActionEvent event, String fxmlPath) {
         try {

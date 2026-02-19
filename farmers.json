@@ -1,10 +1,40 @@
 [
   {
-    "name": "apurba",
-    "phone": "📞 01712345678",
-    "location": "kfscks",
-    "landAmount": "জমি: 100 একর",
+    "name": "raj",
+    "phone": "📞 01712245678",
+    "location": "afgfh",
+    "landAmount": "জমি: 123 একর",
     "crops": "rice",
+    "totalSales": "৳0",
+    "score": 50,
+    "verified": false
+  },
+  {
+    "name": "rakib",
+    "phone": "📞 01712345678",
+    "location": "adaisghbk",
+    "landAmount": "জমি: 123 একর",
+    "crops": "ধান",
+    "totalSales": "৳0",
+    "score": 50,
+    "verified": false
+  },
+  {
+    "name": "salam",
+    "phone": "📞 01712233345",
+    "location": "qwsdfg",
+    "landAmount": "জমি: 12 একর",
+    "crops": "rice",
+    "totalSales": "৳0",
+    "score": 50,
+    "verified": false
+  },
+  {
+    "name": "wt",
+    "phone": "📞 01712345567",
+    "location": "szxdcfg",
+    "landAmount": "জমি: 123 একর",
+    "crops": "sedrfg",
     "totalSales": "৳0",
     "score": 50,
     "verified": false

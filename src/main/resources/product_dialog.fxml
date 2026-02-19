@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefWidth="550.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.ProductDialogController">
+    <padding><Insets bottom="25.0" left="25.0" right="25.0" top="25.0" /></padding>
+
+    <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="নতুন পণ্য যোগ করুন" />
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+        <GridPane hgap="15.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="পণ্যের নাম (English)" styleClass="form-label"/>
+                <TextField fx:id="tfNameEn" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="পণ্যের নাম (বাংলা)" styleClass="form-label"/>
+                <TextField fx:id="tfNameBn" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label text="ক্যাটাগরি" styleClass="form-label"/>
+                <ComboBox fx:id="cbCategory" maxWidth="Infinity" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="অঞ্চল" styleClass="form-label"/>
+                <ComboBox fx:id="cbRegion" maxWidth="Infinity" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label text="বর্তমান দাম (৳)" styleClass="form-label"/>
+                <TextField fx:id="tfCurrentPrice" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label text="পূর্বের দাম (৳)" styleClass="form-label"/>
+                <TextField fx:id="tfPrevPrice" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <Label text="মজুদ পরিমাণ" styleClass="form-label"/>
+                <TextField fx:id="tfStock" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Label text="একক" styleClass="form-label"/>
+                <ComboBox fx:id="cbUnit" maxWidth="Infinity" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <Label text="উৎস" styleClass="form-label"/>
+                <ComboBox fx:id="cbSource" maxWidth="Infinity" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <Label text="আমদানি পরিমাণ" styleClass="form-label"/>
+                <TextField fx:id="tfImport" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                <Label text="হোল্ডারের মজুদ" styleClass="form-label"/>
+                <TextField fx:id="tfHoarderStock" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <Label text="হোল্ডারের ক্রয়মূল্য" styleClass="form-label"/>
+                <TextField fx:id="tfHoarderPrice" styleClass="form-field" />
+            </VBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #F8FAFC; -fx-padding: 10; -fx-background-radius: 10;" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                <CheckBox fx:id="checkEssential" styleClass="modern-checkbox" />
+                <Label text="অত্যাবশ্যক পণ্য" styleClass="form-label" />
+            </HBox>
+        </GridPane>
+    </ScrollPane>
+
+    <HBox alignment="CENTER_RIGHT" spacing="15.0">
+        <Button onAction="#handleCancel" prefWidth="120.0" styleClass="btn-cancel-modern" text="বাতিল" />
+        <Button onAction="#handleSave" prefWidth="180.0" styleClass="btn-save-modern" text="যোগ করুন" />
+    </HBox>
+</VBox>
