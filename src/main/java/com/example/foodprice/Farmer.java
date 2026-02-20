@@ -2,80 +2,55 @@ package com.example.foodprice;
 
 import java.io.Serializable;
 
-/**
- * Represents a farmer in the food price / farmer management system.
- * Updated to implement Serializable for file persistence.
- */
 public class Farmer implements Serializable {
-
-    // serialVersionUID ensures that saved data remains compatible
-    // even if you change the class slightly later.
     private static final long serialVersionUID = 1L;
 
-    private String name;
-    private String phone;
-    private String location;
-    private String landAmount;
-    private String crops;
-    private String totalSales;
+    private String name, phone, nid, division, district, upazila, village, landAmount, banking, account, crops, totalSales;
     private int score;
     private boolean verified;
 
-    // Default constructor - REQUIRED for Gson and some serialization frameworks
-    public Farmer() {
-    }
+    public Farmer() {}
 
-    // Parameterized constructor - used when creating new farmers
-    public Farmer(String name, String phone, String location,
-                  String landAmount, String crops, String totalSales,
-                  int score, boolean verified) {
+    public Farmer(String name, String phone, String nid, String division, String district, String upazila,
+                  String village, String landAmount, String banking, String account, String crops,
+                  String totalSales, int score, boolean verified) {
         this.name = name;
         this.phone = phone;
-        this.location = location;
+        this.nid = nid;
+        this.division = division;
+        this.district = district;
+        this.upazila = upazila;
+        this.village = village;
         this.landAmount = landAmount;
+        this.banking = banking;
+        this.account = account;
         this.crops = crops;
         this.totalSales = totalSales;
         this.score = score;
         this.verified = verified;
     }
 
-    // ───────────────────────────────────────────────
-    // Getters
-    // ───────────────────────────────────────────────
-
+    // Getters and Setters
     public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
     public String getPhone() { return phone; }
-    public String getLocation() { return location; }
+    public void setPhone(String phone) { this.phone = phone; }
+    public String getNid() { return nid; }
+    public String getDivision() { return division; }
+    public String getDistrict() { return district; }
+    public String getUpazila() { return upazila; }
+    public String getVillage() { return village; }
     public String getLandAmount() { return landAmount; }
+    public String getBanking() { return banking; }
+    public String getAccount() { return account; }
     public String getCrops() { return crops; }
+    public void setCrops(String crops) { this.crops = crops; }
     public String getTotalSales() { return totalSales; }
     public int getScore() { return score; }
     public boolean isVerified() { return verified; }
 
-    // ───────────────────────────────────────────────
-    // Setters
-    // ───────────────────────────────────────────────
-
-    public void setName(String name) { this.name = name; }
-    public void setPhone(String phone) { this.phone = phone; }
-    public void setLocation(String location) { this.location = location; }
-    public void setLandAmount(String landAmount) { this.landAmount = landAmount; }
-    public void setCrops(String crops) { this.crops = crops; }
-    public void setTotalSales(String totalSales) { this.totalSales = totalSales; }
-    public void setScore(int score) { this.score = score; }
-    public void setVerified(boolean verified) { this.verified = verified; }
-
-    // ───────────────────────────────────────────────
-    // Optional: toString() - Useful for debugging
-    // ───────────────────────────────────────────────
-
-    @Override
-    public String toString() {
-        return "Farmer{" +
-                "name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", location='" + location + '\'' +
-                ", verified=" + verified +
-                '}';
+    // UI এর জন্য লোকেশন স্ট্রিং তৈরি
+    public String getLocation() {
+        return village + ", " + upazila + ", " + district;
     }
 }

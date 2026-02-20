@@ -15,7 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.FarmersController">
+<?import javafx.scene.control.ComboBox?>
+<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/sidebar.css, @css/farmers.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.FarmersController">
 
     <!-- LEFT SIDEBAR -->
     <left>
@@ -111,36 +112,44 @@
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
                     </columnConstraints>
 
+                    <!-- কার্ড ১: মোট কৃষক -->
                     <VBox styleClass="stat-card-top" GridPane.columnIndex="0">
-                        <Label style="-fx-text-fill: #888; -fx-font-size: 12px;" text="মোট কৃষক" />
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="5" />
+                        <Label text="মোট কৃষক" style="-fx-text-fill: #888; -fx-font-size: 12px;" />
+                        <Label fx:id="lblTotalFarmers" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
                     </VBox>
+
+                    <!-- কার্ড ২: যাচাইকৃত -->
                     <VBox styleClass="stat-card-green-bg" GridPane.columnIndex="1">
-                        <Label style="-fx-text-fill: #00A65A; -fx-font-size: 12px;" text="যাচাইকৃত" />
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #00A65A;" text="3" />
+                        <Label text="যাচাইকৃত" style="-fx-text-fill: #00A65A; -fx-font-size: 12px;" />
+                        <Label fx:id="lblVerifiedFarmers" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #00A65A;" />
                     </VBox>
+
+                    <!-- কার্ড ৩: মোট জমি -->
                     <VBox styleClass="stat-card-top" GridPane.columnIndex="2">
-                        <Label style="-fx-text-fill: #888; -fx-font-size: 12px;" text="মোট জমি" />
-                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #3C8DBC;" text="5.464e+67 একর" />
+                        <Label text="মোট জমি" style="-fx-text-fill: #888; -fx-font-size: 12px;" />
+                        <Label fx:id="lblTotalLand" text="0 একর" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #3C8DBC;" />
                     </VBox>
+
+                    <!-- কার্ড ৪: শোষণ সূচক -->
                     <VBox styleClass="stat-card-green-bg" GridPane.columnIndex="3">
-                        <Label style="-fx-text-fill: #00A65A; -fx-font-size: 12px;" text="শোষণ সূচক" />
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #00A65A;" text="45" />
+                        <Label text="গড় শোষণ সূচক" style="-fx-text-fill: #00A65A; -fx-font-size: 12px;" />
+                        <Label fx:id="lblAvgScore" text="0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #00A65A;" />
                     </VBox>
+
                     <rowConstraints>
                         <RowConstraints />
                     </rowConstraints>
                 </GridPane>
 
-                <!-- 3. Search & Filters (MIDDLE) -->
+                <!-- Search & Filter Section -->
                 <HBox spacing="10">
                     <HBox alignment="CENTER_LEFT" spacing="10" styleClass="search-container" HBox.hgrow="ALWAYS">
                         <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#A0AEC0" scaleX="0.8" scaleY="0.8" />
-                        <TextField promptText="কৃষক খুঁজুন (নাম/ফোন)..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfSearch" promptText="কৃষক খুঁজুন (নাম/ফোন)..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
                     </HBox>
-                    <Button styleClass="btn-filter" text="   সকল অঞ্চল   ▼">
-                        <graphic><SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#718096" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
+
+                    <!-- অঞ্চল ফিল্টার ComboBox (ইমেজের মতো) -->
+                    <ComboBox fx:id="cbRegionFilter" onAction="#handleRegionFilter" prefHeight="45.0" prefWidth="220.0" promptText="সকল অঞ্চল" styleClass="btn-filter" />
                 </HBox>
 
                 <!-- 4. Tabs -->

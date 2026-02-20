@@ -1,0 +1,67 @@
+[
+  {
+    "name": "tasfi",
+    "owner": "tasfi",
+    "type": "বেসরকারি",
+    "region": "ঢাকা",
+    "address": "dhaka",
+    "licenseNo": "1234456",
+    "contact": "01712345678",
+    "capacity": 70.0,
+    "currentStock": 69.0,
+    "expiryDate": "2028-02-18",
+    "hasColdStorage": false
+  },
+  {
+    "name": "kalsdhk",
+    "owner": "asfg",
+    "type": "বেসরকারি",
+    "region": "ঢাকা",
+    "address": "afsdfg",
+    "licenseNo": "124234",
+    "contact": "01712345678",
+    "capacity": 2324.0,
+    "currentStock": 12423.0,
+    "expiryDate": "2026-02-12",
+    "hasColdStorage": false
+  },
+  {
+    "name": "asdf",
+    "owner": "asdf",
+    "type": "বেসরকারি",
+    "region": "ঢাকা",
+    "address": "asdfas",
+    "licenseNo": "1234",
+    "contact": "01912345678",
+    "capacity": 12.0,
+    "currentStock": 123.0,
+    "expiryDate": "2028-02-24",
+    "hasColdStorage": true
+  },
+  {
+    "name": "qwerwer",
+    "owner": "wer",
+    "type": "বেসরকারি",
+    "region": "খুলনা",
+    "address": "",
+    "licenseNo": "123435",
+    "contact": "01712345657",
+    "capacity": 1234.0,
+    "currentStock": 123.0,
+    "expiryDate": "2027-02-17",
+    "hasColdStorage": true
+  },
+  {
+    "name": "akij group",
+    "owner": "akij",
+    "type": "বেসরকারি",
+    "region": "ঢাকা",
+    "address": "dahka",
+    "licenseNo": "12234",
+    "contact": "01712345678",
+    "capacity": 122.0,
+    "currentStock": 100.0,
+    "expiryDate": "",
+    "hasColdStorage": true
+  }
+]

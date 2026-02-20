@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15.0" styleClass="dialog-container" stylesheets="@css/farmer_dialog.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.EditFarmerController">
+    <padding><Insets bottom="25.0" left="25.0" right="25.0" top="25.0" /></padding>
+
+    <HBox alignment="CENTER_LEFT">
+        <Label styleClass="dialog-title" text="কৃষক তথ্য সম্পাদনা" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#handleCancel" style="-fx-background-color: transparent; -fx-text-fill: #999; -fx-font-size: 16;" text="✕" />
+    </HBox>
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="550.0" styleClass="dialog-scroll">
+        <GridPane hgap="15.0" vgap="12.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="নাম" styleClass="form-label"/>
+                <TextField fx:id="tfName" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="ফোন নম্বর" styleClass="form-label"/>
+                <TextField fx:id="tfPhone" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label text="জাতীয় পরিচয়পত্র নম্বর" styleClass="form-label"/>
+                <TextField fx:id="tfNid" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="বিভাগ" styleClass="form-label"/>
+                <ComboBox fx:id="cbDivision" maxWidth="Infinity" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label text="জেলা" styleClass="form-label"/>
+                <TextField fx:id="tfDistrict" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label text="উপজেলা" styleClass="form-label"/>
+                <TextField fx:id="tfUpazila" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <Label text="গ্রাম" styleClass="form-label"/>
+                <TextField fx:id="tfVillage" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Label text="জমির পরিমাণ (একর)" styleClass="form-label"/>
+                <TextField fx:id="tfLand" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <Label text="মোবাইল ব্যাংকিং" styleClass="form-label"/>
+                <ComboBox fx:id="cbBanking" maxWidth="Infinity" styleClass="form-field" />
+            </VBox>
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <Label text="ব্যাংক অ্যাকাউন্ট" styleClass="form-label"/>
+                <TextField fx:id="tfAccount" styleClass="form-field" />
+            </VBox>
+
+            <VBox spacing="8" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                <Label text="প্রধান ফসল" styleClass="form-label" />
+                <HBox spacing="10">
+                    <TextField fx:id="tfCropInput" promptText="ফসলের নাম লিখুন" styleClass="form-field" HBox.hgrow="ALWAYS" />
+                    <Button onAction="#handleAddCrop" styleClass="black-button" text="যোগ" />
+                </HBox>
+                <FlowPane fx:id="fpCrops" hgap="8" vgap="8" />
+            </VBox>
+        </GridPane>
+    </ScrollPane>
+
+    <HBox spacing="15.0" alignment="CENTER">
+        <Button onAction="#handleCancel" prefHeight="45.0" prefWidth="200.0" styleClass="btn-cancel-modern" text="বাতিল" />
+        <Button onAction="#handleUpdate" prefHeight="45.0" prefWidth="280.0" styleClass="btn-save-modern" text="আপডেট করুন" />
+    </HBox>
+</VBox>

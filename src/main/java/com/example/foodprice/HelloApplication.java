@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // 1. Look for the file at the root of resources
-        URL fxmlLocation = getClass().getResource("/admin_login.fxml");
+        URL fxmlLocation = getClass().getResource("/dashboard.fxml");
 
         // 2. Debug check: If file is missing, print an error and stop
         if (fxmlLocation == null) {

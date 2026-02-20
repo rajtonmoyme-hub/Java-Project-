@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.Region?>
-<VBox spacing="20" style="-fx-padding: 30; -fx-background-color: white;" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.FarmerDialogController">
+<VBox spacing="20" style="-fx-padding: 30; -fx-background-color: white;" stylesheets="@css/sidebar.css, @css/farmer_dialog.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.FarmerDialogController">
 
     <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="নতুন কৃষক নিবন্ধন" />
 

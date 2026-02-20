@@ -15,7 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.WarehouseController">
+<?import javafx.scene.control.ComboBox?>
+<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/sidebar.css, @css/warehouse.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.WarehouseController">
 
     <!-- LEFT SIDEBAR -->
     <left>
@@ -99,10 +100,11 @@
                         <Label style="-fx-text-fill: #718096;" text="গুদাম পর্যবেক্ষণ ও হোর্ডিং শনাক্তকরণ" />
                     </VBox>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Button styleClass="btn-primary" text="+   নতুন গুদাম" />
+                    <!-- এভাবে লিখুন -->
+                    <Button onAction="#openWarehouseDialog" styleClass="btn-primary" text="+   নতুন গুদাম" />
                 </HBox>
 
-                <!-- Top Stats Cards -->
+                <!-- Top Summary Cards Section -->
                 <GridPane hgap="20" vgap="20">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
@@ -111,191 +113,56 @@
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
                     </columnConstraints>
 
-                    <VBox styleClass="stat-card-top" GridPane.columnIndex="0">
-                        <Label style="-fx-text-fill: #888; -fx-font-size: 12px;" text="মোট গুদাম" />
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="4" />
+                    <!-- কার্ড ১: মোট গুদাম -->
+                    <VBox styleClass="warehouse-summary-card" GridPane.columnIndex="0">
+                        <Label text="মোট গুদাম" styleClass="summary-title" />
+                        <Label fx:id="lblTotalWarehouses" text="4" styleClass="summary-value, text-dark" />
                     </VBox>
-                    <VBox styleClass="stat-card-top" GridPane.columnIndex="1">
-                        <Label style="-fx-text-fill: #888; -fx-font-size: 12px;" text="মোট ধারণক্ষমতা" />
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #3C8DBC;" text="11.5K MT" />
+
+                    <!-- কার্ড ২: মোট ধারণক্ষমতা -->
+                    <VBox styleClass="warehouse-summary-card" GridPane.columnIndex="1">
+                        <Label text="মোট ধারণক্ষমতা" styleClass="summary-title" />
+                        <Label fx:id="lblTotalCapacity" text="11.5K MT" styleClass="summary-value, text-blue" />
                     </VBox>
-                    <VBox styleClass="stat-card-top" GridPane.columnIndex="2">
-                        <Label style="-fx-text-fill: #888; -fx-font-size: 12px;" text="গড় ব্যবহার" />
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #E67E22;" text="77.4%" />
+
+                    <!-- কার্ড ৩: গড় ব্যবহার -->
+                    <VBox styleClass="warehouse-summary-card" GridPane.columnIndex="2">
+                        <Label text="গড় ব্যবহার" styleClass="summary-title" />
+                        <Label fx:id="lblAvgUsage" text="77.4%" styleClass="summary-value, text-orange" />
                     </VBox>
-                    <VBox styleClass="stat-card-red" GridPane.columnIndex="3">
-                        <Label style="-fx-text-fill: #C53030; -fx-font-size: 12px;" text="উচ্চ ঝুঁকি" />
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #C53030;" text="2" />
+
+                    <!-- কার্ড ৪: উচ্চ ঝুঁকি (ইমেজের মতো লাল ব্যাকগ্রাউন্ড) -->
+                    <VBox styleClass="warehouse-summary-card, card-high-risk" GridPane.columnIndex="3">
+                        <Label text="উচ্চ ঝুঁকি" styleClass="summary-title, text-red" />
+                        <Label fx:id="lblHighRiskCount" text="2" styleClass="summary-value, text-red" />
                     </VBox>
+
                     <rowConstraints>
                         <RowConstraints />
                     </rowConstraints>
                 </GridPane>
 
-                <!-- Search Bar -->
+                <!-- Search & Filter Section -->
                 <HBox spacing="10">
                     <HBox alignment="CENTER_LEFT" spacing="10" styleClass="search-container" HBox.hgrow="ALWAYS">
                         <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#A0AEC0" scaleX="0.8" scaleY="0.8" />
-                        <TextField promptText="গুদাম খুঁজুন..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfSearch" onKeyReleased="#handleSearch" promptText="গুদাম খুঁজুন..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
                     </HBox>
-                    <Button styleClass="btn-filter" text="   সকল অঞ্চল   ▼">
-                        <graphic><SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#718096" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
+
+                    <!-- অঞ্চল ফিল্টার ComboBox -->
+                    <ComboBox fx:id="cbRegionFilter" onAction="#handleRegionFilter" prefHeight="45.0" prefWidth="220.0" promptText="সকল অঞ্চল" styleClass="btn-filter" />
                 </HBox>
 
                 <!-- WAREHOUSE GRID -->
-                <GridPane hgap="20" vgap="20">
+                <GridPane fx:id="warehousesGrid" hgap="20" vgap="20">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33" />
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33" />
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33" />
                     </columnConstraints>
-
-                    <!-- Card 1: Khulna Food Storage (RISK) -->
-                    <VBox styleClass="warehouse-card, warehouse-card-risk" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <HBox alignment="CENTER_LEFT" spacing="12">
-                            <StackPane styleClass="icon-container, icon-red">
-                                <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="white" scaleX="0.8" scaleY="0.8" />
-                            </StackPane>
-                            <VBox>
-                                <Label style="-fx-font-weight:bold; -fx-font-size:16px" text="খুলনা ফুড স্টোরেজ" />
-                                <Label style="-fx-text-fill:#888; -fx-font-size:12px" text="বেসরকারি" />
-                            </VBox>
-                            <Region HBox.hgrow="ALWAYS" />
-                            <Label styleClass="badge-risk" text="⚠ ঝুঁকি" />
-                        </HBox>
-
-                        <!-- Progress Red -->
-                        <VBox spacing="5">
-                            <HBox><Label style="-fx-text-fill:#666; -fx-font-size:12px" text="ব্যবহার" /><Region HBox.hgrow="ALWAYS" /><Label style="-fx-font-weight:bold" text="93%" /></HBox>
-                            <StackPane alignment="CENTER_LEFT" styleClass="progress-bg">
-                                <Region maxWidth="Infinity" prefWidth="250" styleClass="progress-fill-red" />
-                            </StackPane>
-                        </VBox>
-
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="মজুদ" /><Label styleClass="stat-value" text="1400 MT" /></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="ধারণক্ষমতা" /><Label styleClass="stat-value" text="1500 MT" /></VBox>
-                        </HBox>
-
-                        <HBox alignment="CENTER_LEFT" spacing="10">
-                            <SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#718096" scaleX="0.7" scaleY="0.7" />
-                            <Label styleClass="location-text" text="খুলনা" />
-                        </HBox>
-
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS" /><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7" /></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- Card 2: TCB Mirpur (Govt) -->
-                    <VBox styleClass="warehouse-card, warehouse-card-normal" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <HBox alignment="CENTER_LEFT" spacing="12">
-                            <StackPane styleClass="icon-container, icon-orange">
-                                <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="white" scaleX="0.8" scaleY="0.8" />
-                            </StackPane>
-                            <VBox>
-                                <Label style="-fx-font-weight:bold; -fx-font-size:16px" text="TCB গুদাম - মিরপুর" />
-                                <Label style="-fx-text-fill:#888; -fx-font-size:12px" text="সরকারি" />
-                            </VBox>
-                        </HBox>
-
-                        <!-- Progress Green -->
-                        <VBox spacing="5">
-                            <HBox><Label style="-fx-text-fill:#666; -fx-font-size:12px" text="ব্যবহার" /><Region HBox.hgrow="ALWAYS" /><Label style="-fx-font-weight:bold" text="70%" /></HBox>
-                            <StackPane alignment="CENTER_LEFT" styleClass="progress-bg">
-                                <Region maxWidth="Infinity" prefWidth="180" styleClass="progress-fill-green" />
-                            </StackPane>
-                        </VBox>
-
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="মজুদ" /><Label styleClass="stat-value" text="3500 MT" /></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="ধারণক্ষমতা" /><Label styleClass="stat-value" text="5000 MT" /></VBox>
-                        </HBox>
-
-                        <HBox alignment="CENTER_LEFT" spacing="10">
-                            <HBox alignment="CENTER_LEFT" spacing="5"><SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#718096" scaleX="0.7" scaleY="0.7" /><Label styleClass="location-text" text="ঢাকা" /></HBox>
-                            <Region HBox.hgrow="ALWAYS" />
-                            <Label styleClass="tag-cold" text="🌡 কোল্ড স্টোরেজ" />
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="5"><SVGPath content="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#00A65A" scaleX="0.7" scaleY="0.7" /><Label styleClass="tag-verified" text="যাচাইকৃত" /></HBox>
-
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS" /><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7" /></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- Card 3: Karim Enterprise (RISK) -->
-                    <VBox styleClass="warehouse-card, warehouse-card-risk" spacing="15" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                        <HBox alignment="CENTER_LEFT" spacing="12">
-                            <StackPane styleClass="icon-container, icon-red">
-                                <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="white" scaleX="0.8" scaleY="0.8" />
-                            </StackPane>
-                            <VBox>
-                                <Label style="-fx-font-weight:bold; -fx-font-size:16px" text="করিম এন্টারপ্রাইজ" />
-                                <Label style="-fx-text-fill:#888; -fx-font-size:12px" text="ব্যবসায়ী" />
-                            </VBox>
-                            <Region HBox.hgrow="ALWAYS" />
-                            <Label styleClass="badge-risk" text="⚠ ঝুঁকি" />
-                        </HBox>
-
-                        <!-- Progress Red -->
-                        <VBox spacing="5">
-                            <HBox><Label style="-fx-text-fill:#666; -fx-font-size:12px" text="ব্যবহার" /><Region HBox.hgrow="ALWAYS" /><Label style="-fx-font-weight:bold" text="93%" /></HBox>
-                            <StackPane alignment="CENTER_LEFT" styleClass="progress-bg">
-                                <Region maxWidth="Infinity" prefWidth="250" styleClass="progress-fill-red" />
-                            </StackPane>
-                        </VBox>
-
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="মজুদ" /><Label styleClass="stat-value" text="2800 MT" /></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="ধারণক্ষমতা" /><Label styleClass="stat-value" text="3000 MT" /></VBox>
-                        </HBox>
-
-                        <HBox alignment="CENTER_LEFT" spacing="10">
-                            <HBox alignment="CENTER_LEFT" spacing="5"><SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#718096" scaleX="0.7" scaleY="0.7" /><Label styleClass="location-text" text="চট্টগ্রাম" /></HBox>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="5"><SVGPath content="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#00A65A" scaleX="0.7" scaleY="0.7" /><Label styleClass="tag-verified" text="যাচাইকৃত" /></HBox>
-
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS" /><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7" /></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- Card 4: Rajshahi (Normal) -->
-                    <VBox styleClass="warehouse-card, warehouse-card-normal" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <HBox alignment="CENTER_LEFT" spacing="12">
-                            <StackPane styleClass="icon-container, icon-orange">
-                                <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="white" scaleX="0.8" scaleY="0.8" />
-                            </StackPane>
-                            <VBox>
-                                <Label style="-fx-font-weight:bold; -fx-font-size:16px" text="রাজশাহী সমবায় গুদাম" />
-                                <Label style="-fx-text-fill:#888; -fx-font-size:12px" text="সমবায়" />
-                            </VBox>
-                        </HBox>
-
-                        <!-- Progress Green -->
-                        <VBox spacing="5">
-                            <HBox><Label style="-fx-text-fill:#666; -fx-font-size:12px" text="ব্যবহার" /><Region HBox.hgrow="ALWAYS" /><Label style="-fx-font-weight:bold" text="60%" /></HBox>
-                            <StackPane alignment="CENTER_LEFT" styleClass="progress-bg">
-                                <Region maxWidth="Infinity" prefWidth="150" styleClass="progress-fill-green" />
-                            </StackPane>
-                        </VBox>
-
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="মজুদ" /><Label styleClass="stat-value" text="1200 MT" /></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="ধারণক্ষমতা" /><Label styleClass="stat-value" text="2000 MT" /></VBox>
-                        </HBox>
-
-                        <HBox alignment="CENTER_LEFT" spacing="10">
-                            <HBox alignment="CENTER_LEFT" spacing="5"><SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#718096" scaleX="0.7" scaleY="0.7" /><Label styleClass="location-text" text="রাজশাহী" /></HBox>
-                            <Region HBox.hgrow="ALWAYS" />
-                            <Label styleClass="tag-cold" text="🌡 কোল্ড স্টোরেজ" />
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="5"><SVGPath content="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#00A65A" scaleX="0.7" scaleY="0.7" /><Label styleClass="tag-verified" text="যাচাইকৃত" /></HBox>
-
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS" /><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7" /></graphic></Button></HBox>
-                    </VBox>
-
-                    <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                    </rowConstraints>
+                    <!-- হার্ডকোড করা সব VBox (Card) গুলো এখান থেকে ডিলিট করে দিন -->
                 </GridPane>
+
             </VBox>
         </ScrollPane>
     </center>

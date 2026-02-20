@@ -15,7 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.ProductsController">
+<?import javafx.scene.control.ComboBox?>
+<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/sidebar.css, @css/products.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.ProductsController">
 
     <!-- LEFT SIDEBAR -->
     <left>
@@ -98,149 +99,28 @@
                         <Label style="-fx-text-fill: #718096;" text="সকল পণ্যের তথ্য ও মূল্য পরিচালনা" />
                     </VBox>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Button styleClass="btn-primary" text="+   নতুন পণ্য" />
+                    <Button onAction="#openProductDialog" styleClass="btn-primary" text="+   নতুন পণ্য" />
                 </HBox>
 
-                <!-- Search & Filter -->
+                <!-- Search & Filter Section -->
                 <HBox spacing="10">
                     <HBox alignment="CENTER_LEFT" spacing="10" styleClass="search-container" HBox.hgrow="ALWAYS">
                         <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#A0AEC0" scaleX="0.8" scaleY="0.8" />
-                        <TextField promptText="পণ্য খুঁজুন..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfSearch" promptText="পণ্য খুঁজুন..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
                     </HBox>
-                    <Button styleClass="btn-filter" text="   সকল ক্যাটাগরি   ▼">
-                        <graphic><SVGPath content="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="#718096" scaleX="0.8" scaleY="0.8" /></graphic>
-                    </Button>
+
+                    <!-- ক্যাটাগরি ফিল্টার ComboBox -->
+                    <ComboBox fx:id="cbCategoryFilter" onAction="#handleCategoryFilter" prefHeight="45.0" prefWidth="220.0" promptText="সকল ক্যাটাগরি" styleClass="btn-filter" />
                 </HBox>
 
                 <!-- PRODUCT GRID -->
-                <GridPane hgap="20" vgap="20">
+                <GridPane fx:id="productsGrid" hgap="20" vgap="20"> <!-- ADD fx:id HERE -->
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33" />
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33" />
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="33.33" />
                     </columnConstraints>
-
-                    <!-- 1. Minikit Rice -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="মিনিকেট চাল"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="চাল"/></VBox>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳68"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#DC3545" text="↗ 9.7%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 5000 kg"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="জাতীয়"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- 2. Soybean Oil -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="সয়াবিন তেল"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="তেল"/></VBox>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳175"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#DC3545" text="↗ 4.2%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 3500 liter"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="জাতীয়"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- 3. Onion (Abnormal) -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="পেঁয়াজ"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="পেঁয়াজ"/></VBox>
-                            <Region HBox.hgrow="ALWAYS"/>
-                            <Label styleClass="badge-abnormal" text="অস্বাভাবিক"/>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳85"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#DC3545" text="↗ 54.5%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 1200 kg"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="জাতীয়"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- 4. Sugar -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="চিনি"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="চিনি"/></VBox>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳125"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#DC3545" text="↗ 4.2%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 4000 kg"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="জাতীয়"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- 5. Lentil -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="মসুর ডাল"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="ডাল"/></VBox>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳145"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#DC3545" text="↗ 3.6%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 2800 kg"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="জাতীয়"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- 6. Potato (Abnormal + Green Decrease) -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="আলু"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="আলু"/></VBox>
-                            <Region HBox.hgrow="ALWAYS"/>
-                            <Label styleClass="badge-abnormal" text="অস্বাভাবিক"/>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳35"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#00A65A" text="↘ -12.5%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 8000 kg"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="জাতীয়"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- 7. Flour -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="গমের আটা"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="গম"/></VBox>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳58"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#DC3545" text="↗ 5.5%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 3200 kg"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="জাতীয়"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <!-- 8. Chicken -->
-                    <VBox styleClass="product-card" spacing="15" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                        <HBox spacing="12" alignment="CENTER_LEFT">
-                            <StackPane styleClass="card-icon"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" scaleX="0.8" scaleY="0.8"/></StackPane>
-                            <VBox><Label style="-fx-font-weight:bold; -fx-font-size:16px" text="ব্রয়লার মুরগি"/><Label style="-fx-text-fill:#888; -fx-font-size:12px" text="মাংস"/></VBox>
-                        </HBox>
-                        <HBox spacing="10">
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="বর্তমান দাম"/><Label styleClass="stat-value" text="৳195"/></VBox>
-                            <VBox styleClass="stat-box" HBox.hgrow="ALWAYS"><Label styleClass="stat-label" text="পরিবর্তন"/><Label styleClass="stat-value" style="-fx-text-fill:#DC3545" text="↗ 5.4%"/></VBox>
-                        </HBox>
-                        <HBox><Label style="-fx-text-fill:#666" text="মজুদ: 1500 kg"/><Region HBox.hgrow="ALWAYS"/><Label style="-fx-text-fill:#666" text="ঢাকা"/></HBox>
-                        <HBox spacing="10"><Button maxWidth="Infinity" styleClass="btn-edit" text="✎  সম্পাদনা" HBox.hgrow="ALWAYS"/><Button styleClass="btn-delete"><graphic><SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#F56565" scaleX="0.7" scaleY="0.7"/></graphic></Button></HBox>
-                    </VBox>
-
-                    <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                    </rowConstraints>
+                    <!-- Remove all hardcoded VBox cards inside this GridPane if they exist -->
                 </GridPane>
             </VBox>
         </ScrollPane>

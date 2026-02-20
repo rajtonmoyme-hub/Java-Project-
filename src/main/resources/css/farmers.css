@@ -1,0 +1,245 @@
+/* ──────────────────────────────────────────────── */
+/*              FARMER PAGE TOP STATS              */
+/* ──────────────────────────────────────────────── */
+
+/* সাধারণ স্ট্যাট কার্ড */
+.stat-card-top {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 12, 0, 0, 4);
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 1;
+}
+
+/* হাইলাইটেড স্ট্যাট কার্ড (সবুজ ব্যাকগ্রাউন্ড) */
+.stat-card-green-bg {
+    -fx-background-color: #ECFDF5; /* হালকা এমারেল্ড */
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-border-color: #A7F3D0;
+    -fx-border-width: 1;
+}
+
+/* ──────────────────────────────────────────────── */
+/*                   TAB BUTTONS                   */
+/* ──────────────────────────────────────────────── */
+
+.tab-button {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 8;
+    -fx-text-fill: #64748B;
+    -fx-padding: 8 20;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+}
+
+.tab-button:hover {
+    -fx-background-color: #F8FAFC;
+}
+
+.tab-button.active {
+    -fx-background-color: #10B981;
+    -fx-text-fill: white;
+    -fx-border-color: #10B981;
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 185, 129, 0.2), 10, 0, 0, 4);
+}
+
+/* ──────────────────────────────────────────────── */
+/*                 FARMER CARDS                    */
+/* ──────────────────────────────────────────────── */
+
+/* মেইন কৃষক কার্ড */
+.farmer-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 22;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 6);
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 1;
+}
+.farmer-card:hover {
+    -fx-border-color: #10B981;
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 185, 129, 0.1), 20, 0, 0, 10);
+}
+
+/* প্রোফাইল আইকন বক্স */
+.profile-icon {
+    -fx-background-color: #10B981;
+    -fx-background-radius: 12;
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+    -fx-alignment: CENTER;
+}
+
+/* যাচাইকৃত ব্যাজ */
+.badge-verified-green {
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #15803D;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 12;
+    -fx-background-radius: 20;
+}
+
+/* ফসলের ট্যাগ (Crop Tags) */
+.crop-tag {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #475569;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-padding: 4 10;
+    -fx-background-radius: 6;
+}
+
+/* ──────────────────────────────────────────────── */
+/*              INTERNAL DATA BOXES                */
+/* ──────────────────────────────────────────────── */
+
+.data-box {
+    -fx-background-color: #F8FAFC;
+    -fx-background-radius: 12;
+    -fx-padding: 10 15;
+}
+
+/* শোষণ সূচক বক্স (ভালো - সবুজ) */
+.score-box-good {
+    -fx-background-color: #F0FDF4;
+    -fx-background-radius: 12;
+    -fx-padding: 10 15;
+    -fx-border-color: #DCFCE7;
+    -fx-border-width: 1;
+}
+
+/* শোষণ সূচক বক্স (খারাপ - লাল) */
+.score-box-bad {
+    -fx-background-color: #FEF2F2;
+    -fx-background-radius: 12;
+    -fx-padding: 10 15;
+    -fx-border-color: #FEE2E2;
+    -fx-border-width: 1;
+}
+
+.text-label { -fx-font-size: 11px; -fx-text-fill: #94A3B8; -fx-font-weight: 600; }
+.text-value { -fx-font-size: 15px; -fx-font-weight: 800; -fx-text-fill: #1E293B; }
+
+.text-score-good { -fx-font-size: 18px; -fx-font-weight: 800; -fx-text-fill: #16A34A; }
+.text-score-bad { -fx-font-size: 18px; -fx-font-weight: 800; -fx-text-fill: #DC2626; }
+
+/* ──────────────────────────────────────────────── */
+/*               BUTTONS & SEARCH                  */
+/* ──────────────────────────────────────────────── */
+
+.btn-primary {
+    -fx-background-color: #00A65A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.search-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 12;
+    -fx-padding: 10 15;
+}
+
+.btn-filter {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 12;
+    -fx-text-fill: #64748B;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.dialog-container { -fx-background-color: white; -fx-background-radius: 15; }
+.dialog-title { -fx-font-size: 20px; -fx-font-weight: 800; -fx-text-fill: #1E293B; }
+.dialog-scroll { -fx-background-color: transparent; -fx-background-insets: 0; }
+.dialog-scroll .viewport { -fx-background-color: transparent; }
+
+.form-label { -fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #475569; }
+.form-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+.form-field:focused { -fx-border-color: #10B981; -fx-border-width: 1.5; }
+
+.black-button {
+    -fx-background-color: #1E293B;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.btn-cancel-modern {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-text-fill: #64748B;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+}
+
+.btn-save-modern {
+    -fx-background-color: #10B981;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+/* অঞ্চল ফিল্টার কম্বোবক্স স্টাইল */
+.btn-filter {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1E293B;
+    -fx-cursor: hand;
+}
+
+/* ড্রপডাউন ওপেন হলে তার লিস্টের স্টাইল */
+.combo-box .list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #F1F5F9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 10);
+}
+
+.combo-box .list-cell {
+    -fx-padding: 10 15;
+    -fx-text-fill: #475569;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #10B981;
+}
+
+/* সিলেক্টেড আইটেমের টিক মার্ক লুক (ইমেজের মতো) */
+.combo-box .list-cell:selected {
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #1E293B;
+    -fx-font-weight: bold;
+}
+
+/* সার্চ বক্স কন্টেইনার */
+.search-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 12;
+    -fx-padding: 10 15;
+}

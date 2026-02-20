@@ -3,12 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="20.0" styleClass="dialog-container" stylesheets="@css/product_dialog.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.ProductDialogController">
+<VBox spacing="20.0" styleClass="dialog-container" stylesheets="@css/product_dialog.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.EditProductController">
     <padding><Insets bottom="25.0" left="25.0" right="25.0" top="25.0" /></padding>
 
-    <Label styleClass="dialog-title" text="নতুন পণ্য যোগ করুন" />
+    <HBox alignment="CENTER_LEFT">
+        <Label styleClass="dialog-title" text="পণ্য সম্পাদনা" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#handleCancel" style="-fx-background-color: transparent; -fx-text-fill: #999; -fx-font-size: 16;" text="✕" />
+    </HBox>
 
-    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="520.0" styleClass="dialog-scroll">
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="500.0" styleClass="dialog-scroll">
         <GridPane hgap="15.0" vgap="15.0">
             <columnConstraints>
                 <ColumnConstraints percentWidth="50.0" />
@@ -17,11 +21,11 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label text="পণ্যের নাম (English)" styleClass="form-label"/>
-                <TextField fx:id="tfNameEn" promptText="Enter product name" styleClass="form-field" />
+                <TextField fx:id="tfNameEn" styleClass="form-field" />
             </VBox>
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <Label text="পণ্যের নাম (বাংলা)" styleClass="form-label"/>
-                <TextField fx:id="tfNameBn" promptText="পণ্যের নাম লিখুন" styleClass="form-field" />
+                <TextField fx:id="tfNameBn" styleClass="form-field" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
@@ -78,6 +82,6 @@
 
     <HBox alignment="CENTER" spacing="15.0">
         <Button onAction="#handleCancel" prefHeight="45.0" prefWidth="200.0" styleClass="btn-cancel-modern" text="বাতিল" />
-        <Button onAction="#handleSave" prefHeight="45.0" prefWidth="280.0" styleClass="btn-save-modern" text="যোগ করুন" />
+        <Button onAction="#handleUpdate" prefHeight="45.0" prefWidth="280.0" styleClass="btn-save-modern" text="আপডেট করুন" />
     </HBox>
 </VBox>

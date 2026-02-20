@@ -1,0 +1,97 @@
+/* ──────────────────────────────────────────────── */
+/*               DIALOG CONTAINER                  */
+/* ──────────────────────────────────────────────── */
+
+/* মেইন ব্যাকগ্রাউন্ড */
+.vbox-container {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 30;
+}
+
+/* টাইটেল স্টাইল (নতুন কৃষক নিবন্ধন) */
+.dialog-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1E293B; /* Slate 900 */
+    -fx-padding: 0 0 10 0;
+}
+
+/* ──────────────────────────────────────────────── */
+/*                FORM LABELS & FIELDS             */
+/* ──────────────────────────────────────────────── */
+
+/* ফর্মের লেবেল (যেমন: নাম, ফোন নম্বর) */
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #475569; /* Slate 600 */
+}
+
+/* ইনপুট ফিল্ড এবং কম্বোবক্স */
+.form-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0; /* হালকা গ্রে বর্ডার */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1E293B;
+}
+
+/* ফোকাস করলে বর্ডার কালার পরিবর্তন (সবুজ) */
+.form-field:focused {
+    -fx-border-color: #10B981; /* Emerald Green */
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 185, 129, 0.1), 5, 0, 0, 0);
+}
+
+/* ──────────────────────────────────────────────── */
+/*                   BUTTON STYLES                 */
+/* ──────────────────────────────────────────────── */
+
+/* বাটনগুলোর সাধারণ স্টাইল */
+.button {
+    -fx-background-radius: 10;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/* নিবন্ধন করুন বাটন (Save/Register) */
+.btn-save {
+    -fx-background-color: #10B981; /* Emerald Green */
+    -fx-text-fill: white;
+    -fx-padding: 12 25;
+    -fx-font-size: 14px;
+}
+.btn-save:hover {
+    -fx-background-color: #059669;
+}
+
+/* বাতিল বাটন (Cancel) */
+.btn-cancel {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 10;
+    -fx-text-fill: #64748B;
+    -fx-padding: 12 25;
+    -fx-font-size: 14px;
+}
+.btn-cancel:hover {
+    -fx-background-color: #F8FAFC;
+}
+
+/* ছোট কালো বাটন (ফসলের পাশে 'যোগ' বাটন) */
+.black-button {
+    -fx-background-color: #1E293B; /* Dark Slate */
+    -fx-text-fill: white;
+    -fx-padding: 8 15;
+    -fx-font-size: 12px;
+}
+.black-button:hover {
+    -fx-background-color: #0F172A;
+}
+
+/* কম্বোবক্স এরিয়া ফিক্স */
+.combo-box .list-cell {
+    -fx-text-fill: #1E293B;
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "nameEn": "wer",
+    "nameBn": "wer",
+    "category": "চাল",
+    "region": "জাতীয়",
+    "unit": "লিটার",
+    "source": "আমদানি",
+    "currentPrice": 12.0,
+    "prevPrice": 12.0,
+    "stock": 12342.0,
+    "importAmount": 123.0,
+    "hoarderStock": 0.0,
+    "hoarderPrice": 0.0,
+    "isEssential": false
+  },
+  {
+    "nameEn": "tasfi",
+    "nameBn": "tasfi",
+    "category": "সবজি",
+    "region": "ঢাকা",
+    "unit": "কেজি",
+    "source": "আমদানি",
+    "currentPrice": 1000.0,
+    "prevPrice": 20.0,
+    "stock": 70.0,
+    "importAmount": 70.0,
+    "hoarderStock": 60.0,
+    "hoarderPrice": 6.0,
+    "isEssential": false
+  }
+]

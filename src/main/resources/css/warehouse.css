@@ -1,0 +1,233 @@
+/* ──────────────────────────────────────────────── */
+/*             WAREHOUSE TOP STAT CARDS            */
+/* ──────────────────────────────────────────────── */
+
+/* সাধারণ স্ট্যাট কার্ড */
+.stat-card-top {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 4);
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 1;
+}
+
+/* উচ্চ ঝুঁকি কার্ড (লালচে ভাব) */
+.stat-card-red {
+    -fx-background-color: #FEF2F2;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-border-color: #FEE2E2;
+    -fx-border-width: 1;
+}
+
+/* ──────────────────────────────────────────────── */
+/*                WAREHOUSE GRID CARDS             */
+/* ──────────────────────────────────────────────── */
+
+/* মেইন গুদাম কার্ড */
+.warehouse-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-padding: 22;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);
+    -fx-border-width: 1;
+}
+
+/* সাধারণ গুদাম বর্ডার */
+.warehouse-card-normal {
+    -fx-border-color: #F1F5F9;
+}
+
+/* ঝুঁকিপূর্ণ গুদাম বর্ডার (লাল বর্ডার) */
+.warehouse-card-risk {
+    -fx-border-color: #F87171;
+}
+
+/* কার্ডের আইকন কন্টেইনার */
+.icon-container {
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+    -fx-background-radius: 12;
+    -fx-alignment: CENTER;
+}
+
+.icon-red { -fx-background-color: #EF4444; }
+.icon-orange { -fx-background-color: #F59E0B; }
+
+/* ──────────────────────────────────────────────── */
+/*              MODERN PROGRESS BAR                */
+/* ──────────────────────────────────────────────── */
+
+/* প্রগ্রেস বার ব্যাকগ্রাউন্ড (Track) */
+.progress-bg {
+    -fx-background-color: #E2E8F0;
+    -fx-background-radius: 10;
+    -fx-min-height: 10;
+    -fx-max-height: 10;
+}
+
+/* সবুজ প্রগ্রেস ফিল */
+.progress-fill-green {
+    -fx-background-color: #10B981;
+    -fx-background-radius: 10;
+}
+
+/* লাল প্রগ্রেস ফিল (বেশি মজুদ বোঝালে) */
+.progress-fill-red {
+    -fx-background-color: #EF4444;
+    -fx-background-radius: 10;
+}
+
+/* ──────────────────────────────────────────────── */
+/*                 BADGES & TAGS                   */
+/* ──────────────────────────────────────────────── */
+
+/* ঝুঁকি ব্যাজ */
+.badge-risk {
+    -fx-background-color: #EF4444;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 12;
+    -fx-background-radius: 20;
+}
+
+/* যাচাইকৃত ট্যাগ */
+.tag-verified {
+    -fx-text-fill: #10B981;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* কোল্ড স্টোরেজ ট্যাগ */
+.tag-cold {
+    -fx-text-fill: #0EA5E9; /* মডার্ন স্কাই ব্লু */
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* লোকেশন টেকস্ট */
+.location-text {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+/* ──────────────────────────────────────────────── */
+/*               HEADER & SEARCH BOX               */
+/* ──────────────────────────────────────────────── */
+
+.btn-primary {
+    -fx-background-color: #00A65A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 18;
+    -fx-cursor: hand;
+}
+
+.search-container {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 10;
+    -fx-padding: 8 15;
+}
+
+.btn-filter {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 10;
+    -fx-text-fill: #64748B;
+    -fx-cursor: hand;
+}
+
+
+/* অঞ্চল ফিল্টার কম্বোবক্স স্টাইল */
+.btn-filter {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1E293B;
+    -fx-cursor: hand;
+}
+
+.btn-filter:hover {
+    -fx-border-color: #10B981;
+}
+
+/* ড্রপডাউন পপআপ স্টাইল (ইমেজের মতো সাদা এবং সফট শ্যাডো) */
+.combo-box .list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #F1F5F9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 10);
+}
+
+.combo-box .list-cell {
+    -fx-padding: 10 15;
+    -fx-text-fill: #475569;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #10B981;
+}
+
+/* সার্চ বক্স কন্টেইনার */
+.search-container {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 12;
+    -fx-padding: 8 15;
+}
+
+/* ──────────────────────────────────────────────── */
+/*      WAREHOUSE SUMMARY CARDS (IMAGE MATCHED)    */
+/* ──────────────────────────────────────────────── */
+
+.warehouse-summary-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 25;
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 15, 0, 0, 5);
+}
+
+/* টাইটেল স্টাইল */
+.summary-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748B; /* Slate Gray */
+    -fx-font-weight: 500;
+    -fx-padding: 0 0 8 0;
+}
+
+/* মেইন ভ্যালু স্টাইল */
+.summary-value {
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+}
+
+/* কার্ড ৪: উচ্চ ঝুঁকি (ইমেজের মতো লালচে আভা) */
+.card-high-risk {
+    -fx-background-color: linear-gradient(to right, #FEF2F2, #FFFFFF);
+    -fx-border-color: #FECDD3;
+}
+
+/* কালার ভেরিয়েশন */
+.text-dark   { -fx-text-fill: #1E293B; }
+.text-blue   { -fx-text-fill: #2563EB; } /* ইমেজের নীল */
+.text-orange { -fx-text-fill: #B45309; } /* ইমেজের ব্রাউন/অরেঞ্জ */
+.text-red    { -fx-text-fill: #DC2626; } /* ইমেজের লাল */
+
+/* ফোকাস ও হোভার ইফেক্ট */
+.warehouse-summary-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 20, 0, 0, 8);
+}

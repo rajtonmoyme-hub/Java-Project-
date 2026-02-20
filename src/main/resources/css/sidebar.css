@@ -1,0 +1,109 @@
+/* ──────────────────────────────────────────────── */
+/*                SIDEBAR CONTAINER                */
+/* ──────────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: #FFFFFF;
+    /* ডান পাশে খুব হালকা একটি বর্ডার যা মেইন কন্টেন্ট থেকে আলাদা করবে */
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 0 1 0 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.02), 15, 0, 0, 0);
+}
+
+/* ScrollPane এর ব্যাকগ্রাউন্ড ফিক্স (যদি সাইডবার স্ক্রোলযোগ্য হয়) */
+.sidebar-scroll {
+    -fx-background-color: transparent;
+}
+.sidebar-scroll .viewport {
+    -fx-background-color: white;
+}
+
+/* ──────────────────────────────────────────────── */
+/*                  LOGO SECTION                    */
+/* ──────────────────────────────────────────────── */
+.logo-container {
+    -fx-padding: 10 0 20 0;
+}
+
+.logo-icon-bg {
+    -fx-background-color: #10B981; /* Emerald Green */
+    -fx-background-radius: 12;
+    -fx-min-width: 42;
+    -fx-min-height: 42;
+}
+
+.logo-text {
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #064E3B; /* Deep Forest Green */
+    -fx-letter-spacing: 0.5px;
+}
+
+.logo-subtitle {
+    -fx-font-size: 10px;
+    -fx-text-fill: #94A3B8;
+}
+
+/* ──────────────────────────────────────────────── */
+/*                NAV MENU BUTTONS                  */
+/* ──────────────────────────────────────────────── */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #64748B; /* Slate Gray */
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 18;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-transition: 0.2s;
+}
+
+/* আইকন কালার হ্যান্ডলিং */
+.menu-button SVGPath {
+    -fx-fill: #94A3B8;
+    -fx-scale-x: 0.75;
+    -fx-scale-y: 0.75;
+}
+
+/* Hover State */
+.menu-button:hover {
+    -fx-background-color: #F8FAFC;
+    -fx-text-fill: #10B981;
+}
+
+.menu-button:hover SVGPath {
+    -fx-fill: #10B981;
+}
+
+/* Active / Selected State */
+.menu-button.active {
+    -fx-background-color: #10B981;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    /* বাটনটির নিচে হালকা গ্লো ইফেক্ট */
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 185, 129, 0.4), 12, 0, 0, 4);
+}
+
+.menu-button.active SVGPath {
+    -fx-fill: #FFFFFF;
+}
+
+/* ──────────────────────────────────────────────── */
+/*                FOOTER / GOVT INFO                */
+/* ──────────────────────────────────────────────── */
+.sidebar-footer {
+    -fx-background-color: #ECFDF5; /* হালকা সবুজ ব্যাকগ্রাউন্ড */
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+
+.govt-text {
+    -fx-text-fill: #059669;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+.dept-text {
+    -fx-text-fill: #065F46;
+    -fx-font-size: 10px;
+}
