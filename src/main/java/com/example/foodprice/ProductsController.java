@@ -236,6 +236,7 @@ public class ProductsController implements Initializable {
     @FXML void goToDashboard(ActionEvent event) { navigate(event, "/dashboard.fxml"); }
     @FXML void goToWarehouse(ActionEvent event) { navigate(event, "/warehouse.fxml"); }
     @FXML void goToFarmers(ActionEvent event) { navigate(event, "/farmers.fxml"); }
+    @FXML void goToSupplyChain(ActionEvent event) {navigate(event, "/supply_chain.fxml");}
 
     private void navigate(ActionEvent event, String fxmlPath) {
         try {

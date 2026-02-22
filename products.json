@@ -28,5 +28,20 @@
     "hoarderStock": 60.0,
     "hoarderPrice": 6.0,
     "isEssential": false
+  },
+  {
+    "nameEn": "rice",
+    "nameBn": "rice",
+    "category": "চাল",
+    "region": "চট্টগ্রাম",
+    "unit": "বস্তা",
+    "source": "আমদানি",
+    "currentPrice": 12.0,
+    "prevPrice": 10.0,
+    "stock": 1234.0,
+    "importAmount": 1234.0,
+    "hoarderStock": 1234.0,
+    "hoarderPrice": 1234.0,
+    "isEssential": false
   }
 ]

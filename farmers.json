@@ -44,5 +44,37 @@
     "totalSales": "৳250000",
     "score": 28,
     "verified": true
+  },
+  {
+    "name": "raj",
+    "phone": "📞 01712345678",
+    "nid": "12345678",
+    "division": "রংপুর",
+    "district": "axcvbnmxcvbn",
+    "upazila": "xcvbnm",
+    "village": "xcvbn",
+    "landAmount": "123 একর",
+    "banking": "রকেট",
+    "account": "",
+    "crops": "dal, kola",
+    "totalSales": "৳০",
+    "score": 50,
+    "verified": false
+  },
+  {
+    "name": "rakib",
+    "phone": "📞 01712345678",
+    "nid": "123435",
+    "division": "বরিশাল",
+    "district": "sdfdgb",
+    "upazila": "sdgb",
+    "village": "xfjbhg",
+    "landAmount": "123 একর",
+    "banking": "রকেট",
+    "account": "123424",
+    "crops": "rice",
+    "totalSales": "৳০",
+    "score": 50,
+    "verified": false
   }
 ]

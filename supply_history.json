@@ -1,0 +1,16 @@
+[
+  {
+    "product": "গম",
+    "stage": "গুদাম",
+    "location": "sjbdfjh",
+    "region": "ঢাকা",
+    "amount": "123",
+    "price": "12",
+    "transportMode": "পিকআপ",
+    "efficiency": 12.0,
+    "wastePercent": 23.0,
+    "delayHours": 2.0,
+    "completed": true,
+    "completedAt": "2026-02-22 22:58"
+  }
+]

@@ -1,0 +1,96 @@
+/* ──────────────────────────────────────────────── */
+/*        ADMIN REGISTRATION - FLOATING CARD       */
+/* ──────────────────────────────────────────────── */
+
+/* পেছনের ছবি সেট করা */
+.bg-image-layer {
+    -fx-background-image: url("../images/admin-bg.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-color: #0E684D;
+}
+
+/* মাঝখানের সাদা কার্ড */
+.registration-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    /* কার্ডের চারপাশের সফট শ্যাডো */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 30, 0, 0, 10);
+}
+
+/* ফর্মের টাইটেল (একটু ছোট করা হয়েছে যাতে স্লিম দেখায়) */
+.form-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1E293B;
+    -fx-padding: 0 0 5 0;
+}
+
+/* সাব-টাইটেল */
+.form-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748B;
+}
+
+/* ফিল্ড লেবেল (যদি ব্যবহার করেন) */
+.field-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+}
+
+/* ইনপুট ফিল্ডস (প্যাডিং কমানো হয়েছে কম্প্যাক্ট লুকের জন্য) */
+.modern-input {
+    -fx-background-color: #F8FAFC;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 9 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1E293B;
+}
+
+/* ক্লিক করলে ইমেজের মতো সবুজ বর্ডার হবে */
+.modern-input:focused {
+    -fx-border-color: #1A7B5C; /* ইমেজের গাঢ় সবুজ */
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 1.5;
+}
+
+/* রেজিস্ট্রেশন বাটন */
+.btn-register {
+    -fx-background-color: #1A7B5C; /* ইমেজের বাটন কালার */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(26, 123, 92, 0.3), 10, 0, 0, 4);
+}
+
+.btn-register:hover {
+    -fx-background-color: #135A43; /* হোভার করলে কালার একটু ডার্ক হবে */
+}
+
+/* নিচের লিঙ্ক */
+.link-text {
+    -fx-text-fill: #1A7B5C;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-underline: false;
+    -fx-padding: 2 0 0 0;
+}
+
+.link-text:hover {
+    -fx-underline: true;
+}
+
+/* এরর/সাকসেস মেসেজ স্টাইল */
+.message-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 10;
+    -fx-background-radius: 4;
+    -fx-alignment: center;
+}

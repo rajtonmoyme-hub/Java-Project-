@@ -1,0 +1,34 @@
+[
+  {
+    "product": "Bashmoti",
+    "source": "Pakistan",
+    "category": "চাল",
+    "quantityMt": 2436547.0,
+    "fobPrice": 80.0,
+    "landingCost": 4.0,
+    "port": "চট্টগ্রাম বন্দর",
+    "date": "2026-02-18",
+    "importerName": "Rakib",
+    "licenseNumber": "123454345",
+    "lcNumber": "2324",
+    "dutyPaid": 1234.0,
+    "customsCleared": true,
+    "status": "যাচাইকৃত"
+  },
+  {
+    "product": "Potato",
+    "source": "Mayanmar",
+    "category": "অন্যান্য",
+    "quantityMt": 123.0,
+    "fobPrice": 12.0,
+    "landingCost": 2.0,
+    "port": "পায়রা বন্দর",
+    "date": "2026-02-10",
+    "importerName": "Tonmoy",
+    "licenseNumber": "124355",
+    "lcNumber": "12343",
+    "dutyPaid": 123213.0,
+    "customsCleared": true,
+    "status": "যাচাইকৃত"
+  }
+]

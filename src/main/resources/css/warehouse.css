@@ -1,233 +1,182 @@
-/* ──────────────────────────────────────────────── */
-/*             WAREHOUSE TOP STAT CARDS            */
-/* ──────────────────────────────────────────────── */
-
-/* সাধারণ স্ট্যাট কার্ড */
-.stat-card-top {
-    -fx-background-color: white;
-    -fx-background-radius: 12;
-    -fx-padding: 20;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 4);
-    -fx-border-color: #F1F5F9;
-    -fx-border-width: 1;
-}
-
-/* উচ্চ ঝুঁকি কার্ড (লালচে ভাব) */
-.stat-card-red {
-    -fx-background-color: #FEF2F2;
-    -fx-background-radius: 12;
-    -fx-padding: 20;
-    -fx-border-color: #FEE2E2;
-    -fx-border-width: 1;
-}
-
-/* ──────────────────────────────────────────────── */
-/*                WAREHOUSE GRID CARDS             */
-/* ──────────────────────────────────────────────── */
-
-/* মেইন গুদাম কার্ড */
-.warehouse-card {
-    -fx-background-color: white;
-    -fx-background-radius: 18;
-    -fx-padding: 22;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);
-    -fx-border-width: 1;
-}
-
-/* সাধারণ গুদাম বর্ডার */
-.warehouse-card-normal {
-    -fx-border-color: #F1F5F9;
-}
-
-/* ঝুঁকিপূর্ণ গুদাম বর্ডার (লাল বর্ডার) */
-.warehouse-card-risk {
-    -fx-border-color: #F87171;
-}
-
-/* কার্ডের আইকন কন্টেইনার */
-.icon-container {
-    -fx-min-width: 48;
-    -fx-min-height: 48;
-    -fx-background-radius: 12;
-    -fx-alignment: CENTER;
-}
-
-.icon-red { -fx-background-color: #EF4444; }
-.icon-orange { -fx-background-color: #F59E0B; }
-
-/* ──────────────────────────────────────────────── */
-/*              MODERN PROGRESS BAR                */
-/* ──────────────────────────────────────────────── */
-
-/* প্রগ্রেস বার ব্যাকগ্রাউন্ড (Track) */
-.progress-bg {
-    -fx-background-color: #E2E8F0;
-    -fx-background-radius: 10;
-    -fx-min-height: 10;
-    -fx-max-height: 10;
-}
-
-/* সবুজ প্রগ্রেস ফিল */
-.progress-fill-green {
-    -fx-background-color: #10B981;
-    -fx-background-radius: 10;
-}
-
-/* লাল প্রগ্রেস ফিল (বেশি মজুদ বোঝালে) */
-.progress-fill-red {
-    -fx-background-color: #EF4444;
-    -fx-background-radius: 10;
-}
-
-/* ──────────────────────────────────────────────── */
-/*                 BADGES & TAGS                   */
-/* ──────────────────────────────────────────────── */
-
-/* ঝুঁকি ব্যাজ */
-.badge-risk {
-    -fx-background-color: #EF4444;
-    -fx-text-fill: white;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-padding: 4 12;
-    -fx-background-radius: 20;
-}
-
-/* যাচাইকৃত ট্যাগ */
-.tag-verified {
-    -fx-text-fill: #10B981;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-
-/* কোল্ড স্টোরেজ ট্যাগ */
-.tag-cold {
-    -fx-text-fill: #0EA5E9; /* মডার্ন স্কাই ব্লু */
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-
-/* লোকেশন টেকস্ট */
-.location-text {
-    -fx-text-fill: #94A3B8;
-    -fx-font-size: 13px;
-    -fx-font-weight: 500;
-}
-
-/* ──────────────────────────────────────────────── */
-/*               HEADER & SEARCH BOX               */
-/* ──────────────────────────────────────────────── */
+/* Warehouse Page */
 
 .btn-primary {
-    -fx-background-color: #00A65A;
+    -fx-background-color: #0ea968;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 8;
-    -fx-padding: 8 18;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 10 18;
+    -fx-background-radius: 10;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(14,169,104,0.28), 12, 0, 0, 4);
+}
+.btn-primary:hover {
+    -fx-background-color: #0b8b56;
 }
 
 .search-container {
     -fx-background-color: white;
-    -fx-background-radius: 10;
-    -fx-border-color: #E2E8F0;
-    -fx-border-radius: 10;
+    -fx-background-radius: 12;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 12;
     -fx-padding: 8 15;
 }
 
 .btn-filter {
     -fx-background-color: white;
-    -fx-border-color: #E2E8F0;
-    -fx-border-radius: 10;
-    -fx-text-fill: #64748B;
-    -fx-cursor: hand;
-}
-
-
-/* অঞ্চল ফিল্টার কম্বোবক্স স্টাইল */
-.btn-filter {
-    -fx-background-color: white;
-    -fx-border-color: #E2E8F0;
+    -fx-border-color: #e2e8f0;
     -fx-border-radius: 12;
     -fx-background-radius: 12;
     -fx-font-size: 14px;
     -fx-font-weight: 600;
-    -fx-text-fill: #1E293B;
+    -fx-text-fill: #1e293b;
     -fx-cursor: hand;
 }
-
 .btn-filter:hover {
-    -fx-border-color: #10B981;
+    -fx-border-color: #16a34a;
 }
-
-/* ড্রপডাউন পপআপ স্টাইল (ইমেজের মতো সাদা এবং সফট শ্যাডো) */
 .combo-box .list-view {
     -fx-background-color: white;
     -fx-background-radius: 12;
     -fx-border-radius: 12;
-    -fx-border-color: #F1F5F9;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 10);
+    -fx-border-color: #f1f5f9;
+    -fx-effect: dropshadow(three-pass-box, rgba(2,6,23,0.14), 16, 0, 0, 6);
 }
-
 .combo-box .list-cell {
-    -fx-padding: 10 15;
+    -fx-padding: 10 14;
     -fx-text-fill: #475569;
 }
-
 .combo-box .list-cell:hover {
-    -fx-background-color: #F8FAFC;
-    -fx-text-fill: #10B981;
+    -fx-background-color: #f8fafc;
+    -fx-text-fill: #0f766e;
 }
 
-/* সার্চ বক্স কন্টেইনার */
-.search-container {
-    -fx-background-color: white;
-    -fx-background-radius: 12;
-    -fx-border-color: #E2E8F0;
-    -fx-border-radius: 12;
-    -fx-padding: 8 15;
-}
-
-/* ──────────────────────────────────────────────── */
-/*      WAREHOUSE SUMMARY CARDS (IMAGE MATCHED)    */
-/* ──────────────────────────────────────────────── */
-
+/* Top cards: গুদাম ও মজুদ summary */
 .warehouse-summary-card {
-    -fx-background-color: white;
-    -fx-background-radius: 15;
-    -fx-padding: 25;
-    -fx-border-color: #F1F5F9;
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f8fbff);
+    -fx-background-radius: 16;
+    -fx-padding: 22;
+    -fx-border-color: #e2e8f0;
     -fx-border-width: 1;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 15, 0, 0, 5);
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(three-pass-box, rgba(2,6,23,0.08), 16, 0.02, 0, 6);
 }
-
-/* টাইটেল স্টাইল */
+.warehouse-summary-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(2,6,23,0.14), 22, 0.05, 0, 8);
+}
 .summary-title {
-    -fx-font-size: 14px;
-    -fx-text-fill: #64748B; /* Slate Gray */
-    -fx-font-weight: 500;
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: 600;
     -fx-padding: 0 0 8 0;
 }
-
-/* মেইন ভ্যালু স্টাইল */
 .summary-value {
     -fx-font-size: 30px;
     -fx-font-weight: 800;
 }
-
-/* কার্ড ৪: উচ্চ ঝুঁকি (ইমেজের মতো লালচে আভা) */
 .card-high-risk {
-    -fx-background-color: linear-gradient(to right, #FEF2F2, #FFFFFF);
-    -fx-border-color: #FECDD3;
+    -fx-background-color: linear-gradient(to right, #fff1f2, #ffffff);
+    -fx-border-color: #fecdd3;
+}
+.text-dark { -fx-text-fill: #0f172a; }
+.text-blue { -fx-text-fill: #2563eb; }
+.text-orange { -fx-text-fill: #b45309; }
+.text-red { -fx-text-fill: #dc2626; }
+
+/* Grid cards */
+.warehouse-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(2,6,23,0.08), 16, 0.03, 0, 6);
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+}
+.warehouse-card-normal {
+    -fx-border-color: #e2e8f0;
+}
+.warehouse-card-risk {
+    -fx-border-color: #f87171;
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #fff7f7);
 }
 
-/* কালার ভেরিয়েশন */
-.text-dark   { -fx-text-fill: #1E293B; }
-.text-blue   { -fx-text-fill: #2563EB; } /* ইমেজের নীল */
-.text-orange { -fx-text-fill: #B45309; } /* ইমেজের ব্রাউন/অরেঞ্জ */
-.text-red    { -fx-text-fill: #DC2626; } /* ইমেজের লাল */
+.icon-container {
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+    -fx-max-width: 48;
+    -fx-max-height: 48;
+    -fx-background-radius: 12;
+    -fx-alignment: center;
+}
+.icon-red { -fx-background-color: #ef4444; }
+.icon-orange { -fx-background-color: #f59e0b; }
 
-/* ফোকাস ও হোভার ইফেক্ট */
-.warehouse-summary-card:hover {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 20, 0, 0, 8);
+.progress-bg {
+    -fx-background-color: #e2e8f0;
+    -fx-background-radius: 10;
+    -fx-min-height: 10;
+    -fx-max-height: 10;
+}
+.progress-fill-green {
+    -fx-background-color: linear-gradient(to right, #22c55e, #16a34a);
+    -fx-background-radius: 10;
+}
+.progress-fill-red {
+    -fx-background-color: linear-gradient(to right, #ef4444, #dc2626);
+    -fx-background-radius: 10;
+}
+
+.badge-risk {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-padding: 4 10;
+    -fx-background-radius: 999;
+}
+.location-text {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+.stat-box {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 10;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-padding: 10 12;
+}
+
+.btn-edit {
+    -fx-background-color: #eff6ff;
+    -fx-text-fill: #1d4ed8;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-border-color: #bfdbfe;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 10;
+}
+.btn-edit:hover {
+    -fx-background-color: #dbeafe;
+}
+
+.btn-delete {
+    -fx-background-color: #fff1f2;
+    -fx-border-color: #fecdd3;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-min-width: 40;
+    -fx-pref-width: 40;
+}
+.btn-delete:hover {
+    -fx-background-color: #ffe4e6;
+}
+.btn-delete .svg-path {
+    -fx-fill: #e11d48;
+    -fx-scale-x: 0.75;
+    -fx-scale-y: 0.75;
 }

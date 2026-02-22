@@ -6,93 +6,95 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AdminLoginController {
 
     @FXML private TextField tfEmail;
-    @FXML private PasswordField pfPassword;
     @FXML private TextField tfCode;
+    @FXML private PasswordField pfPassword;
     @FXML private Label lblError;
-    @FXML private Button btnLogin;
 
-    // Hardcoded credentials (production এ অবশ্যই ডাটাবেস + hashing ব্যবহার করতে হবে)
-    private static final String ADMIN_EMAIL    = "abc@gmail.com";
-    private static final String ADMIN_PASSWORD = "1234";
-    private static final String UNIQUE_CODE    = "raj";
+    // Only unique code is hardcoded as requested.
+    private static final String UNIQUE_CODE = "raj";
 
     @FXML
     void handleLogin(ActionEvent event) {
-        String email    = tfEmail.getText().trim();
+        String email = tfEmail.getText().trim();
         String password = pfPassword.getText().trim();
-        String code     = tfCode.getText().trim();
+        String code = tfCode.getText().trim();
 
-        // প্রথমে এরর লুকিয়ে রাখি
         lblError.setVisible(false);
         lblError.setText("");
 
-        // সব ফিল্ড চেক
         if (email.isEmpty() || password.isEmpty() || code.isEmpty()) {
             showError("সব ফিল্ড পূরণ করুন");
             return;
         }
 
-        // ইমেইল চেক
-        if (!email.equals(ADMIN_EMAIL)) {
-            showError("ভুল ইমেইল");
-            tfEmail.requestFocus();
+        if (!authenticateAdmin(email, password, code)) {
+            showError("ইমেইল, পাসওয়ার্ড অথবা ইউনিক কোড ভুল");
+            pfPassword.clear();
             return;
         }
 
-        // পাসওয়ার্ড চেক
-        if (!password.equals(ADMIN_PASSWORD)) {
-            showError("ভুল পাসওয়ার্ড");
-            pfPassword.requestFocus();
-            pfPassword.clear();  // ভুল হলে পাসওয়ার্ড ক্লিয়ার করে দিচ্ছে
-            return;
+        navigate(event, "/dashboard.fxml");
+    }
+
+    private boolean authenticateAdmin(String email, String password, String code) {
+        // Unique code must match the hardcoded value.
+        if (!UNIQUE_CODE.equalsIgnoreCase(code)) {
+            return false;
         }
 
-        // ইউনিক কোড চেক
-        if (!code.equals(UNIQUE_CODE)) {
-            showError("ভুল ইউনিক কোড");
-            tfCode.requestFocus();
-            tfCode.clear();
-            return;
+        // Email and password must come from registration data (admins.json).
+        List<AdminUser> admins = DataManager.loadAdmins();
+        for (AdminUser admin : admins) {
+            if (admin.getEmail() != null
+                    && admin.getPassword() != null
+                    && admin.getEmail().equalsIgnoreCase(email)
+                    && admin.getPassword().equals(password)) {
+                return true;
+            }
         }
 
-        // সব ঠিক থাকলে → Dashboard খোলা
-        try {
-            // তোমার ইতিমধ্যে তৈরি করা dashboard.fxml লোড করা হচ্ছে
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboard.fxml"));
-            Parent root = loader.load();
-
-            // নতুন সিন তৈরি + সাইজ সেট (তোমার ইচ্ছামতো চেঞ্জ করতে পারো)
-            Scene scene = new Scene(root, 1400, 900);
-
-            // CSS যোগ করা (যদি dashboard এর জন্য আলাদা CSS থাকে)
-            // scene.getStylesheets().add(getClass().getResource("/dashboard.css").toExternalForm());
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Admin Dashboard - FoodPrice");
-            stage.centerOnScreen();
-            stage.isResizable();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            showError("Dashboard লোড করতে সমস্যা হয়েছে। ফাইল চেক করুন।");
-        }
+        return false;
     }
 
     private void showError(String message) {
         lblError.setText(message);
         lblError.setVisible(true);
+        lblError.setManaged(true);
+    }
+
+    @FXML
+    void goToAdminRegistration(ActionEvent event) {
+        navigate(event, "/admin_registration.fxml");
+    }
+
+    @FXML
+    void goToUserLogin(ActionEvent event) {
+        navigate(event, "/user_login.fxml");
+    }
+
+    private void navigate(ActionEvent event, String fxmlPath) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene currentScene = stage.getScene();
+            if (currentScene == null) {
+                stage.setScene(new Scene(root, 1000, 700));
+            } else {
+                currentScene.setRoot(root);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

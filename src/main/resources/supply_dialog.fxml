@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" styleClass="dialog-container" stylesheets="@css/supply_dialog.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.SupplyDialogController">
+    <padding><Insets bottom="30.0" left="30.0" right="30.0" top="30.0" /></padding>
+
+    <HBox alignment="CENTER_LEFT">
+        <Label fx:id="dialogTitleLabel" styleClass="dialog-title" text="নতুন সাপ্লাই চেইন এন্ট্রি" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#handleCancel" style="-fx-background-color: transparent; -fx-text-fill: #999; -fx-font-size: 18; -fx-cursor: hand;" text="✕" />
+    </HBox>
+
+    <GridPane hgap="20.0" vgap="18.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50.0" />
+            <ColumnConstraints percentWidth="50.0" />
+        </columnConstraints>
+
+        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="পণ্য" styleClass="form-label"/>
+            <ComboBox fx:id="cbProduct" maxWidth="Infinity" promptText="পণ্য নির্বাচন করুন" styleClass="form-field" />
+        </VBox>
+        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="পর্যায়" styleClass="form-label"/>
+            <ComboBox fx:id="cbStage" maxWidth="Infinity" promptText="উৎস" styleClass="form-field" />
+        </VBox>
+
+        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label text="অবস্থান" styleClass="form-label"/>
+            <TextField fx:id="tfLocation" promptText="অবস্থানের নাম" styleClass="form-field" />
+        </VBox>
+        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="অঞ্চল" styleClass="form-label"/>
+            <ComboBox fx:id="cbRegion" maxWidth="Infinity" promptText="ঢাকা" styleClass="form-field" />
+        </VBox>
+
+        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <Label text="পরিমাণ (MT)" styleClass="form-label"/>
+            <TextField fx:id="tfAmount" styleClass="form-field" />
+        </VBox>
+        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label text="মূল্য (৳/কেজি)" styleClass="form-label"/>
+            <TextField fx:id="tfPrice" styleClass="form-field" />
+        </VBox>
+
+        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <Label text="পরিবহন মোড" styleClass="form-label"/>
+            <ComboBox fx:id="cbTransport" maxWidth="Infinity" promptText="ট্রাক" styleClass="form-field" />
+        </VBox>
+        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label text="রুট দক্ষতা (%)" styleClass="form-label"/>
+            <TextField fx:id="tfEfficiency" styleClass="form-field" />
+        </VBox>
+
+        <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="4">
+            <Label text="নষ্টের হার (%)" styleClass="form-label"/>
+            <TextField fx:id="tfWaste" styleClass="form-field" />
+        </VBox>
+        <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label text="বিলম্ব (ঘণ্টা)" styleClass="form-label"/>
+            <TextField fx:id="tfDelay" styleClass="form-field" />
+        </VBox>
+    </GridPane>
+
+    <HBox alignment="CENTER" spacing="20.0">
+        <Button onAction="#handleCancel" prefHeight="45.0" prefWidth="220.0" styleClass="btn-cancel-modern" text="বাতিল" />
+        <Button fx:id="saveButton" onAction="#handleSave" prefHeight="45.0" prefWidth="280.0" styleClass="btn-save-modern" text="সংরক্ষণ" />
+    </HBox>
+</VBox>

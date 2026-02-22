@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" styleClass="dialog-scroll" stylesheets="@css/import_dialog.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.ImportDialogController">
+    <content>
+        <VBox spacing="20" styleClass="dialog-root">
+            <padding>
+                <Insets bottom="24" left="24" right="24" top="20" />
+            </padding>
+
+            <HBox alignment="CENTER_LEFT">
+                <Label fx:id="titleLabel" styleClass="dialog-title" text="নতুন আমদানি রেকর্ড" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleClose" styleClass="close-btn" text="✕" />
+            </HBox>
+
+            <GridPane hgap="20" vgap="18">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label styleClass="field-label" text="পণ্যের নাম" />
+                    <TextField fx:id="tfProductName" styleClass="field-input" />
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label styleClass="field-label" text="ক্যাটাগরি" />
+                    <ComboBox fx:id="cbCategory" styleClass="field-combo" />
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label styleClass="field-label" text="উৎস দেশ" />
+                    <TextField fx:id="tfSourceCountry" styleClass="field-input" />
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label styleClass="field-label" text="পরিমাণ (MT)" />
+                    <TextField fx:id="tfQuantityMt" styleClass="field-input" />
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label styleClass="field-label" text="FOB মূল্য (৳/কেজি)" />
+                    <TextField fx:id="tfFobPrice" styleClass="field-input" />
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label styleClass="field-label" text="ল্যান্ডিং কস্ট (৳/কেজি)" />
+                    <TextField fx:id="tfLandingCost" styleClass="field-input" />
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <Label styleClass="field-label" text="আমদানি তারিখ" />
+                    <DatePicker fx:id="dpImportDate" styleClass="field-date" />
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <Label styleClass="field-label" text="প্রবেশ বন্দর" />
+                    <ComboBox fx:id="cbEntryPort" styleClass="field-combo" />
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                    <Label styleClass="field-label" text="আমদানিকারকের নাম" />
+                    <TextField fx:id="tfImporterName" styleClass="field-input" />
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <Label styleClass="field-label" text="লাইসেন্স নম্বর" />
+                    <TextField fx:id="tfLicenseNumber" styleClass="field-input" />
+                </VBox>
+
+                <VBox spacing="6" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                    <Label styleClass="field-label" text="LC নম্বর" />
+                    <TextField fx:id="tfLcNumber" styleClass="field-input" />
+                </VBox>
+                <VBox spacing="6" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <Label styleClass="field-label" text="শুল্ক পরিশোধিত (৳)" />
+                    <TextField fx:id="tfDutyPaid" styleClass="field-input" />
+                </VBox>
+            </GridPane>
+
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="toggle-wrap">
+                <ToggleButton fx:id="tgCustomsCleared" styleClass="toggle-button" />
+                <Label styleClass="toggle-label" text="কাস্টমস ক্লিয়ারেন্স সম্পন্ন" />
+            </HBox>
+
+            <HBox alignment="CENTER_RIGHT" spacing="12">
+                <Button onAction="#handleCancel" styleClass="btn-cancel" text="বাতিল" />
+                <Button onAction="#handleSave" styleClass="btn-save" text="সংরক্ষণ" />
+            </HBox>
+        </VBox>
+    </content>
+</ScrollPane>

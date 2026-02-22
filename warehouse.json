@@ -1,5 +1,18 @@
 [
   {
+    "name": "rakib",
+    "owner": "rakib",
+    "type": "সমবায়",
+    "region": "সিলেট",
+    "address": "asfdghj",
+    "licenseNo": "12324",
+    "contact": "0171232344",
+    "capacity": 1324.0,
+    "currentStock": 123.0,
+    "expiryDate": "2026-03-14",
+    "hasColdStorage": false
+  },
+  {
     "name": "tasfi",
     "owner": "tasfi",
     "type": "বেসরকারি",
@@ -10,19 +23,6 @@
     "capacity": 70.0,
     "currentStock": 69.0,
     "expiryDate": "2028-02-18",
-    "hasColdStorage": false
-  },
-  {
-    "name": "kalsdhk",
-    "owner": "asfg",
-    "type": "বেসরকারি",
-    "region": "ঢাকা",
-    "address": "afsdfg",
-    "licenseNo": "124234",
-    "contact": "01712345678",
-    "capacity": 2324.0,
-    "currentStock": 12423.0,
-    "expiryDate": "2026-02-12",
     "hasColdStorage": false
   },
   {

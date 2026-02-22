@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/sidebar.css, @css/import.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.ImportController">
+    <left>
+        <fx:include source="sidebar.fxml" />
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-scroll">
+            <content>
+                <VBox spacing="22">
+                    <padding>
+                        <Insets bottom="30" left="30" right="30" top="30" />
+                    </padding>
+
+                    <HBox alignment="CENTER_LEFT" spacing="16">
+                        <VBox spacing="3">
+                            <Label styleClass="page-title" text="আমদানি রেকর্ড" />
+                            <Label styleClass="page-subtitle" text="Import &amp; Stock Transparency Module" />
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label styleClass="header-chip" text="Live Monitoring" />
+                        <Button onAction="#openNewImportDialog" styleClass="btn-new-import" text="+   নতুন আমদানি" />
+                    </HBox>
+
+                    <GridPane hgap="16" vgap="16">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                            <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                        </columnConstraints>
+
+                        <VBox styleClass="summary-card, summary-card-navy" GridPane.columnIndex="0">
+                            <Label styleClass="summary-title" text="মোট আমদানি" />
+                            <Label fx:id="lblTotalImport" styleClass="summary-value text-dark" text="0.0K MT" />
+                        </VBox>
+                        <VBox styleClass="summary-card, summary-card-blue" GridPane.columnIndex="1">
+                            <Label styleClass="summary-title" text="গড় ল্যান্ডিং কস্ট" />
+                            <Label fx:id="lblAvgLandingCost" styleClass="summary-value text-blue" text="৳0" />
+                        </VBox>
+                        <VBox styleClass="summary-card, summary-card-green" GridPane.columnIndex="2">
+                            <Label styleClass="summary-title text-green" text="যাচাইকৃত" />
+                            <Label fx:id="lblVerifiedCount" styleClass="summary-value text-green-dark" text="0" />
+                        </VBox>
+                        <VBox styleClass="summary-card, summary-card-slate" GridPane.columnIndex="3">
+                            <Label styleClass="summary-title" text="অমিমাংসিত" />
+                            <Label fx:id="lblPendingCount" styleClass="summary-value text-dark" text="0" />
+                        </VBox>
+                    </GridPane>
+
+                    <HBox spacing="12" styleClass="filter-wrap">
+                        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="search-box" HBox.hgrow="ALWAYS">
+                            <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" styleClass="search-icon" scaleX="0.8" scaleY="0.8" />
+                            <TextField fx:id="tfSearch" onKeyReleased="#handleSearch" promptText="আমদানি খুঁজুন..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <ComboBox fx:id="cbCategoryFilter" onAction="#handleCategoryFilter" prefWidth="220" styleClass="category-filter" />
+                    </HBox>
+
+                    <VBox spacing="0" styleClass="records-card">
+                        <HBox alignment="CENTER_LEFT" styleClass="records-header">
+                            <Label styleClass="header-cell" text="আমদানি রেকর্ড তালিকা" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label fx:id="lblResultInfo" styleClass="result-info-chip" text="0 রেকর্ড" />
+                            <Label styleClass="header-subtext" text="নতুন ডাটা উপরে দেখা যাবে" />
+                        </HBox>
+
+                        <VBox fx:id="recordsListContainer" spacing="10" styleClass="records-body" />
+
+                        <VBox fx:id="emptyStateBox" alignment="CENTER" spacing="10" styleClass="empty-wrap">
+                            <SVGPath content="M14 2c1.1 0 2 .9 2 2v2h2c1.1 0 2 .9 2 2v8.5c0 .86-.55 1.61-1.36 1.89L12 21l-6.64-2.61A2.01 2.01 0 0 1 4 16.5V8c0-1.1.9-2 2-2h2V4c0-1.1.9-2 2-2h4zm0 2h-4v2h4V4zm4 4H6v8.17L12 18.5l6-2.33V8zM9 11h6v2H9v-2z" styleClass="empty-icon" scaleX="1.2" scaleY="1.2" />
+                            <Label styleClass="empty-title" text="কোনো আমদানি রেকর্ড নেই" />
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

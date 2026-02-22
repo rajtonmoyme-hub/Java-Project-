@@ -76,11 +76,29 @@ public class DashboardController implements Initializable {
 
     private void navigate(ActionEvent event, String fxmlPath) {
         try {
+            setActiveSidebarButton(fxmlPath);
             URL fxmlLocation = getClass().getResource(fxmlPath);
             if (fxmlLocation == null) return;
             Parent root = FXMLLoader.load(fxmlLocation);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1400, 900));
+            Scene currentScene = stage.getScene();
+            if (currentScene == null) {
+                stage.setScene(new Scene(root, 1400, 900));
+            } else {
+                currentScene.setRoot(root);
+            }
         } catch (IOException e) { e.printStackTrace(); }
+    }
+
+    private void setActiveSidebarButton(String fxmlPath) {
+        if ("/products.fxml".equals(fxmlPath)) {
+            SidebarController.activeButtonId = "btnProducts";
+        } else if ("/warehouse.fxml".equals(fxmlPath)) {
+            SidebarController.activeButtonId = "btnWarehouse";
+        } else if ("/farmers.fxml".equals(fxmlPath)) {
+            SidebarController.activeButtonId = "btnFarmers";
+        } else if ("/dashboard.fxml".equals(fxmlPath)) {
+            SidebarController.activeButtonId = "btnDashboard";
+        }
     }
 }

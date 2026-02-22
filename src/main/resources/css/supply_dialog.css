@@ -1,31 +1,19 @@
-/* Warehouse dialog */
-
 .dialog-container {
     -fx-background-color: white;
     -fx-background-radius: 15;
+    -fx-border-radius: 15;
 }
-
 .dialog-title {
-    -fx-font-size: 20px;
+    -fx-font-size: 22px;
     -fx-font-weight: 800;
     -fx-text-fill: #1E293B;
 }
 
-.dialog-scroll {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-}
-
-.dialog-scroll .viewport {
-    -fx-background-color: transparent;
-}
-
 .form-label {
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-font-weight: 600;
     -fx-text-fill: #475569;
 }
-
 .form-field {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #E2E8F0;
@@ -34,16 +22,9 @@
     -fx-padding: 10;
     -fx-font-size: 14px;
 }
-
 .form-field:focused {
     -fx-border-color: #10B981;
     -fx-border-width: 1.5;
-}
-
-.essential-box {
-    -fx-background-color: #F8FAFC;
-    -fx-padding: 12;
-    -fx-background-radius: 12;
 }
 
 .btn-cancel-modern {
@@ -55,20 +36,15 @@
     -fx-cursor: hand;
     -fx-font-size: 14px;
 }
-
-.btn-cancel-modern:hover {
-    -fx-background-color: #F8FAFC;
-}
+.btn-cancel-modern:hover { -fx-background-color: #F8FAFC; }
 
 .btn-save-modern {
-    -fx-background-color: #00A65A;
+    -fx-background-color: #0FA958; /* Emerald Green */
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 10;
     -fx-cursor: hand;
     -fx-font-size: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(15, 169, 88, 0.3), 10, 0, 0, 4);
 }
-
-.btn-save-modern:hover {
-    -fx-background-color: #008E4D;
-}
+.btn-save-modern:hover { -fx-background-color: #0B8543; }

@@ -1,0 +1,41 @@
+[
+  {
+    "product": "গম",
+    "stage": "পরিবহন",
+    "location": "nimu",
+    "region": "চট্টগ্রাম",
+    "amount": "100",
+    "price": "123",
+    "transportMode": "পিকআপ",
+    "efficiency": 2.0,
+    "wastePercent": 2.0,
+    "delayHours": 23.0,
+    "completed": false
+  },
+  {
+    "product": "আলু",
+    "stage": "উৎস",
+    "location": "qwdwd",
+    "region": "সিলেট",
+    "amount": "12324",
+    "price": "12",
+    "transportMode": "পিকআপ",
+    "efficiency": 12.0,
+    "wastePercent": 12.0,
+    "delayHours": 21.0,
+    "completed": false
+  },
+  {
+    "product": "পেঁয়াজ",
+    "stage": "পরিবহন",
+    "location": "asdsf",
+    "region": "চট্টগ্রাম",
+    "amount": "123",
+    "price": "13",
+    "transportMode": "ট্রাক",
+    "efficiency": 2.0,
+    "wastePercent": 2.0,
+    "delayHours": 12.0,
+    "completed": false
+  }
+]

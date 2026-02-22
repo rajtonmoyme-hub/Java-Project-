@@ -1,0 +1,73 @@
+/* পেছনের ছবি সেট করা */
+.bg-image-layer {
+    -fx-background-image: url("../images/admin-bg.jpg"); /* আপনার যদি আলাদা ছবি থাকে, নাহলে admin-bg.jpg দিতে পারেন */
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-color: #0E684D;
+}
+
+/* মাঝখানের সাদা কার্ড */
+.auth-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 30, 0, 0, 10);
+}
+
+.form-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1E293B;
+}
+
+.form-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748B;
+}
+
+.modern-input {
+    -fx-background-color: #F8FAFC;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 9 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1E293B;
+}
+
+.modern-input:focused {
+    -fx-border-color: #1A7B5C;
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 1.5;
+}
+
+.btn-auth {
+    -fx-background-color: #1A7B5C;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(26, 123, 92, 0.3), 10, 0, 0, 4);
+}
+
+.btn-auth:hover {
+    -fx-background-color: #135A43;
+}
+
+.link-text {
+    -fx-text-fill: #1A7B5C;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-underline: false;
+    -fx-padding: 2 0 0 0;
+}
+.link-text:hover { -fx-underline: true; }
+
+.message-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 10;
+    -fx-background-radius: 4;
+    -fx-alignment: center;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@css/user_auth.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.UserLoginController">
+
+    <StackPane styleClass="bg-image-layer" />
+
+    <VBox alignment="CENTER" maxWidth="380" maxHeight="-Infinity" spacing="20" styleClass="auth-card">
+        <padding>
+            <Insets bottom="30.0" left="35.0" right="35.0" top="30.0" />
+        </padding>
+
+        <VBox alignment="CENTER" spacing="5">
+            <Label styleClass="form-title" text="ইউজার লগইন" />
+            <Label styleClass="form-subtitle" text="সিস্টেমে প্রবেশ করতে ইমেইল ও পাসওয়ার্ড দিন" />
+        </VBox>
+
+        <VBox spacing="15">
+            <TextField fx:id="tfEmail" promptText="ইমেইল অ্যাড্রেস" styleClass="modern-input" />
+            <PasswordField fx:id="pfPassword" promptText="পাসওয়ার্ড" styleClass="modern-input" />
+            <Label fx:id="lblError" managed="false" styleClass="message-label" visible="false" wrapText="true" />
+        </VBox>
+
+        <Button maxWidth="Infinity" onAction="#handleLogin" prefHeight="40" styleClass="btn-auth" text="লগইন করুন" />
+
+        <!-- Navigation Links -->
+        <HBox alignment="CENTER" spacing="10">
+            <Hyperlink onAction="#goToRegistration" styleClass="link-text" text="নতুন একাউন্ট করুন" />
+            <Label text="|" style="-fx-text-fill: #CBD5E1;" />
+            <Hyperlink onAction="#goToAdminLogin" styleClass="link-text" text="অ্যাডমিন লগইন" />
+        </HBox>
+    </VBox>
+</StackPane>

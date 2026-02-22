@@ -257,12 +257,18 @@ public class WarehouseController implements Initializable {
     @FXML void goToDashboard(ActionEvent event) { navigate(event, "/dashboard.fxml"); }
     @FXML void goToProducts(ActionEvent event) { navigate(event, "/products.fxml"); }
     @FXML void goToFarmers(ActionEvent event) { navigate(event, "/farmers.fxml"); }
+    @FXML void goToSupplyChain(ActionEvent event) {navigate(event, "/supply_chain.fxml");}
 
     private void navigate(ActionEvent event, String path) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(path));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1400, 900));
+            Scene currentScene = stage.getScene();
+            if (currentScene == null) {
+                stage.setScene(new Scene(root, 1400, 900));
+            } else {
+                currentScene.setRoot(root);
+            }
         } catch (IOException e) { e.printStackTrace(); }
     }
 }

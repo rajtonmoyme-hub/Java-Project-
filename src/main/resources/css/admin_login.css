@@ -1,136 +1,86 @@
 /* ──────────────────────────────────────────────── */
-/*      Agri-Direct Admin Login - 2025 Modern Theme   */
+/*           ADMIN LOGIN - FLOATING CARD           */
 /* ──────────────────────────────────────────────── */
 
-.root {
-    -fx-background-color: #0f1e2e;
-    -fx-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+/* পেছনের ছবি সেট করা */
+.bg-image-layer {
+    /* আপনার ইমেজের ফোল্ডার অনুযায়ী পাথ */
+    -fx-background-image: url("../images/admin-bg.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    /* যদি ছবি লোড না হয়, তবে এই সবুজ রঙটি ব্যাকগ্রাউন্ডে দেখাবে */
+    -fx-background-color: #0E684D;
 }
 
-.background-layer {
-    -fx-background-color: linear-gradient(to bottom right, #0f2c3f, #1a3c52, #0f2c3f);
-    -fx-opacity: 0.92;
-}
-
-/* Visual left panel (farm + isometric feel) */
-.visual-panel {
-    -fx-background-color: rgba(26, 60, 82, 0.35);
-    -fx-background-radius: 24;
-    -fx-padding: 40;
-    -fx-border-radius: 24;
-    -fx-border-color: rgba(52, 211, 153, 0.18);
-    -fx-border-width: 1.2;
-}
-
-/* Brand text */
-.brand-title {
-    -fx-font-size: 42;
-    -fx-font-weight: 800;
-    -fx-text-fill: #34d399;     /* emerald green */
-    -fx-effect: dropshadow(gaussian, rgba(52,211,153,0.4), 20, 0, 0, 0);
-}
-
-.brand-subtitle {
-    -fx-font-size: 20;
-    -fx-text-fill: #a7f3d0;
-    -fx-font-weight: 500;
-}
-
-/* Login card - glassmorphism + agri green accent */
+/* মাঝখানের সাদা কার্ড */
 .login-card {
-    -fx-background-color: rgba(15, 30, 46, 0.82);
-    -fx-background-radius: 24;
-    -fx-border-radius: 24;
-    -fx-border-color: rgba(52, 211, 153, 0.22);
-    -fx-border-width: 1.5;
-    -fx-padding: 50 45 50 45;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.65), 50, 0, 0, 25),
-                innershadow(gaussian, rgba(52,211,153,0.08), 30, 0, 0, 0);
-}
-
-/* Titles */
-.login-title {
-    -fx-font-size: 28;
-    -fx-font-weight: 700;
-    -fx-text-fill: white;
-}
-
-.login-subtitle {
-    -fx-font-size: 15;
-    -fx-text-fill: #94a3b8;
-    -fx-font-weight: 400;
-}
-
-/* Form labels */
-.field-label {
-    -fx-font-size: 14;
-    -fx-font-weight: 600;
-    -fx-text-fill: #d1d5db;
-}
-
-/* Modern input fields */
-.modern-input {
-    -fx-background-color: rgba(30, 58, 78, 0.6);
-    -fx-text-fill: #e5e7eb;
-    -fx-prompt-text-fill: #9ca3af;
-    -fx-font-size: 15;
-    -fx-padding: 14 18;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 12;
     -fx-border-radius: 12;
-    -fx-border-color: rgba(52, 211, 153, 0.25);
+    /* ভাসমান (Floating) শ্যাডো ইফেক্ট */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 30, 0, 0, 10);
+}
+
+/* টাইটেল */
+.login-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1A1A1A;
+    -fx-padding: 0 0 10 0;
+}
+
+/* ইনপুট ফিল্ডস */
+.modern-input {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D1D5DB; /* হালকা গ্রে বর্ডার */
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 12 15;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* ইনপুট ফিল্ডে ক্লিক করলে বর্ডারের কালার পরিবর্তন */
+.modern-input:focused {
+    -fx-border-color: #1A7B5C; /* ইমেজের থিমের মতো সবুজ */
     -fx-border-width: 1.5;
 }
 
-.modern-input:focused {
-    -fx-border-color: #34d399;
-    -fx-background-color: rgba(30, 58, 78, 0.85);
-    -fx-effect: dropshadow(gaussian, #34d399, 14, 0.35, 0, 0);
-}
-
-/* Login button - green accent */
+/* লগইন বাটন */
 .login-button {
-    -fx-background-color: #10b981;      /* emerald-500 */
+    -fx-background-color: #1A7B5C; /* ইমেজের বাটন কালার */
     -fx-text-fill: white;
-    -fx-font-size: 16;
-    -fx-font-weight: 600;
-    -fx-background-radius: 14;
-    -fx-padding: 16 40;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-background-radius: 6;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.45), 18, 0, 0, 6);
+    -fx-effect: dropshadow(gaussian, rgba(26, 123, 92, 0.3), 10, 0, 0, 4);
 }
 
 .login-button:hover {
-    -fx-background-color: #059669;      /* emerald-700 */
-    -fx-scale-x: 1.04;
-    -fx-scale-y: 1.04;
+    -fx-background-color: #135A43; /* হোভার করলে একটু গাঢ় হবে */
 }
 
-.login-button:pressed {
-    -fx-scale-x: 0.96;
-    -fx-scale-y: 0.96;
-}
-
-/* Error message */
-.error-label {
-    -fx-text-fill: #f87171;
-    -fx-background-color: rgba(248,113,113,0.12);
-    -fx-background-radius: 10;
-    -fx-padding: 12 18;
-    -fx-font-size: 14;
+/* ফরগেট পাসওয়ার্ড লিঙ্ক */
+.link-text {
+    -fx-text-fill: #1A7B5C;
+    -fx-font-size: 13px;
     -fx-font-weight: 500;
-    -fx-alignment: center;
-    -fx-border-color: rgba(248,113,113,0.3);
-    -fx-border-width: 1;
-    -fx-border-radius: 10;
+    -fx-underline: false;
+    -fx-padding: 5 0 0 0;
 }
 
-/* Links */
-.link {
-    -fx-text-fill: #6ee7b7;
-    -fx-font-size: 13;
-}
-
-.link:hover {
+.link-text:hover {
     -fx-underline: true;
-    -fx-text-fill: #34d399;
+}
+
+/* এরর মেসেজ স্টাইল */
+.error-label {
+    -fx-text-fill: #DC2626;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-color: #FEE2E2;
+    -fx-padding: 8 10;
+    -fx-background-radius: 4;
 }
