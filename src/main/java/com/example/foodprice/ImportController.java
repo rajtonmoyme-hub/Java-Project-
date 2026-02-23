@@ -39,11 +39,16 @@ public class ImportController implements Initializable {
     @FXML private ComboBox<String> cbCategoryFilter;
     @FXML private VBox recordsListContainer;
     @FXML private VBox emptyStateBox;
+    @FXML private javafx.scene.control.Button btnAddImport;
 
     private final List<ImportRecord> masterList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (UserSession.isUser() && btnAddImport != null) {
+            btnAddImport.setVisible(false);
+            btnAddImport.setManaged(false);
+        }
         cbCategoryFilter.setItems(FXCollections.observableArrayList("সকল ক্যাটাগরি"));
         cbCategoryFilter.setValue("সকল ক্যাটাগরি");
         tfSearch.textProperty().addListener((obs, oldText, newText) -> applyFilters());
@@ -62,6 +67,9 @@ public class ImportController implements Initializable {
 
     @FXML
     private void openNewImportDialog() {
+        if (UserSession.isUser()) {
+            return;
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/import_dialog.fxml"));
             Parent root = loader.load();

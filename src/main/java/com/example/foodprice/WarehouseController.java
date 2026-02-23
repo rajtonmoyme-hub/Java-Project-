@@ -30,60 +30,53 @@ public class WarehouseController implements Initializable {
     @FXML private TextField tfSearch;
     @FXML private ComboBox<String> cbRegionFilter;
 
+    // RBAC: Add Warehouse Button ID
+    @FXML private Button btnAddWarehouse;
+
     // Summary Card Labels
-    @FXML private Label lblTotalWarehouses;
-    @FXML private Label lblTotalCapacity;
-    @FXML private Label lblAvgUsage;
-    @FXML private Label lblHighRiskCount;
+    @FXML private Label lblTotalWarehouses, lblTotalCapacity, lblAvgUsage, lblHighRiskCount;
 
     private List<Warehouse> masterWarehouseList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // ১. অঞ্চলের ড্রপডাউন সেটআপ
         ObservableList<String> regions = FXCollections.observableArrayList(
                 "সকল অঞ্চল", "ঢাকা", "চট্টগ্রাম", "রাজশাহী", "খুলনা", "বরিশাল", "সিলেট", "রংপুর", "ময়মনসিংহ"
         );
         cbRegionFilter.setItems(regions);
         cbRegionFilter.setValue("সকল অঞ্চল");
 
-        // ২. ডাটা লোড এবং সামারি কার্ড আপডেট
+        // --- RBAC লজিক (ইউজার হলে "নতুন গুদাম" বাটন হাইড হবে) ---
+        if (UserSession.isUser() && btnAddWarehouse != null) {
+            btnAddWarehouse.setVisible(false);
+            btnAddWarehouse.setManaged(false);
+        }
+
         loadAndRender();
 
-        // ৩. রিয়েল-টাইম সার্চ লিসেনার (টাইপ করার সাথে সাথে ফিল্টার হবে)
         tfSearch.textProperty().addListener((obs, oldVal, newVal) -> applyFilters());
     }
 
-    /**
-     * ডাটা লোড করে গ্রিড এবং সামারি কার্ড রেন্ডার করে
-     */
     private void loadAndRender() {
         masterWarehouseList = DataManager.loadWarehouses();
         updateSummaryCards();
-        applyFilters(); // বর্তমান ফিল্টার অনুযায়ী গ্রিড দেখাবে
+        applyFilters();
     }
 
-    /**
-     * উপরের ৪টি কার্ডের ডাটা ক্যালকুলেশন
-     */
     private void updateSummaryCards() {
         if (masterWarehouseList == null || masterWarehouseList.isEmpty()) {
-            lblTotalWarehouses.setText("0");
-            lblTotalCapacity.setText("0 MT");
-            lblAvgUsage.setText("0%");
-            lblHighRiskCount.setText("0");
+            lblTotalWarehouses.setText("0"); lblTotalCapacity.setText("0 MT");
+            lblAvgUsage.setText("0%"); lblHighRiskCount.setText("0");
             return;
         }
 
         int totalCount = masterWarehouseList.size();
-        double totalCap = 0;
-        double totalStock = 0;
+        double totalCap = 0, totalStock = 0;
         int highRisk = 0;
 
         for (Warehouse w : masterWarehouseList) {
             totalCap += w.getCapacity();
             totalStock += w.getCurrentStock();
-            // ৯০% এর বেশি ব্যবহার হলে ঝুঁকি ধরা হচ্ছে
             if (w.getCapacity() > 0 && (w.getCurrentStock() / w.getCapacity()) >= 0.9) {
                 highRisk++;
             }
@@ -92,7 +85,6 @@ public class WarehouseController implements Initializable {
         double avgUsage = (totalCap > 0) ? (totalStock / totalCap) * 100 : 0;
 
         lblTotalWarehouses.setText(String.valueOf(totalCount));
-        // ১০০০ এর বেশি হলে K MT ফরম্যাটে দেখানো
         lblTotalCapacity.setText(totalCap >= 1000 ? String.format("%.1fK MT", totalCap / 1000) : String.format("%.0f MT", totalCap));
         lblAvgUsage.setText(String.format("%.1f%%", avgUsage));
         lblHighRiskCount.setText(String.valueOf(highRisk));
@@ -101,9 +93,6 @@ public class WarehouseController implements Initializable {
     @FXML void handleSearch() { applyFilters(); }
     @FXML void handleRegionFilter() { applyFilters(); }
 
-    /**
-     * সার্চ এবং রিজিয়ন ফিল্টার লজিক
-     */
     private void applyFilters() {
         String searchText = tfSearch.getText().toLowerCase().trim();
         String selectedRegion = cbRegionFilter.getValue();
@@ -128,9 +117,6 @@ public class WarehouseController implements Initializable {
         }
     }
 
-    /**
-     * ডাইনামিক কার্ড জেনারেশন (ইমেজের ডিজাইন অনুযায়ী)
-     */
     private VBox createWarehouseCard(Warehouse w) {
         VBox card = new VBox(15);
         double usage = (w.getCapacity() > 0) ? (w.getCurrentStock() / w.getCapacity()) * 100 : 0;
@@ -138,7 +124,6 @@ public class WarehouseController implements Initializable {
 
         card.getStyleClass().addAll("warehouse-card", isRisk ? "warehouse-card-risk" : "warehouse-card-normal");
 
-        // Header Section
         HBox header = new HBox(12);
         header.setAlignment(Pos.CENTER_LEFT);
 
@@ -164,7 +149,6 @@ public class WarehouseController implements Initializable {
             header.getChildren().addAll(r, riskBadge);
         }
 
-        // Progress Bar
         VBox progressSection = new VBox(5);
         Label usageLbl = new Label(String.format("ব্যবহার: %.1f%%", usage));
         usageLbl.setStyle("-fx-font-size: 12px; -fx-text-fill: #64748B;");
@@ -176,7 +160,6 @@ public class WarehouseController implements Initializable {
         StackPane.setAlignment(fill, Pos.CENTER_LEFT);
         progressSection.getChildren().addAll(usageLbl, track);
 
-        // Stats
         HBox stats = new HBox(10);
         VBox sBox = createStatBox("মজুদ", w.getCurrentStock() + " MT");
         VBox cBox = createStatBox("ধারণক্ষমতা", w.getCapacity() + " MT");
@@ -186,14 +169,13 @@ public class WarehouseController implements Initializable {
         Label loc = new Label("📍 " + w.getRegion());
         loc.getStyleClass().add("location-text");
 
-        // Action Buttons (Edit & Delete)
+        // --- RBAC: Action Buttons Logic ---
         HBox actions = new HBox(10);
         Button btnEdit = new Button("✎  সম্পাদনা");
         btnEdit.getStyleClass().add("btn-edit");
         btnEdit.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(btnEdit, Priority.ALWAYS);
 
-        // এডিট বাটন লজিক
         btnEdit.setOnAction(e -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit_warehouse_dialog.fxml"));
@@ -208,7 +190,6 @@ public class WarehouseController implements Initializable {
             } catch (IOException ex) { ex.printStackTrace(); }
         });
 
-        // ডিলিট বাটন লজিক (Trash Icon)
         Button btnDelete = new Button();
         btnDelete.getStyleClass().add("btn-delete");
         SVGPath trashIcon = new SVGPath();
@@ -226,7 +207,14 @@ public class WarehouseController implements Initializable {
         });
 
         actions.getChildren().addAll(btnEdit, btnDelete);
-        card.getChildren().addAll(header, progressSection, stats, loc, actions);
+
+        // ইউজার শুধু ইনফরমেশন দেখতে পাবে, বাটন দেখতে পাবে না।
+        if (UserSession.isAdmin()) {
+            card.getChildren().addAll(header, progressSection, stats, loc, actions);
+        } else {
+            card.getChildren().addAll(header, progressSection, stats, loc);
+        }
+
         return card;
     }
 
@@ -240,6 +228,9 @@ public class WarehouseController implements Initializable {
 
     @FXML
     void openWarehouseDialog(ActionEvent event) {
+        if (UserSession.isUser()) {
+            return;
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/warehouse_dialog.fxml"));
             Parent root = loader.load();
@@ -250,25 +241,6 @@ public class WarehouseController implements Initializable {
             WarehouseDialogController controller = loader.getController();
             stage.showAndWait();
             if (controller.isSaveClicked()) loadAndRender();
-        } catch (IOException e) { e.printStackTrace(); }
-    }
-
-    // নেভিগেশন মেথডসমূহ
-    @FXML void goToDashboard(ActionEvent event) { navigate(event, "/dashboard.fxml"); }
-    @FXML void goToProducts(ActionEvent event) { navigate(event, "/products.fxml"); }
-    @FXML void goToFarmers(ActionEvent event) { navigate(event, "/farmers.fxml"); }
-    @FXML void goToSupplyChain(ActionEvent event) {navigate(event, "/supply_chain.fxml");}
-
-    private void navigate(ActionEvent event, String path) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(path));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene currentScene = stage.getScene();
-            if (currentScene == null) {
-                stage.setScene(new Scene(root, 1400, 900));
-            } else {
-                currentScene.setRoot(root);
-            }
         } catch (IOException e) { e.printStackTrace(); }
     }
 }

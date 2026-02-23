@@ -29,6 +29,7 @@ public class ProductsController implements Initializable {
     @FXML private GridPane productsGrid;
     @FXML private TextField tfSearch; // FXML এ fx:id="tfSearch" দিন
     @FXML private ComboBox<String> cbCategoryFilter; // FXML এ fx:id="cbCategoryFilter" দিন
+    @FXML private Button btnAddProduct;
 
     private List<Product> masterList = new ArrayList<>(); // মূল ডাটা রাখার জন্য
 
@@ -41,6 +42,11 @@ public class ProductsController implements Initializable {
         );
         cbCategoryFilter.setItems(categories);
         cbCategoryFilter.setValue("সকল ক্যাটাগরি");
+
+        if (UserSession.isUser() && btnAddProduct != null) {
+            btnAddProduct.setVisible(false);
+            btnAddProduct.setManaged(false);
+        }
 
         // ২. ডাটা লোড এবং প্রদর্শন
         loadAndRender();
@@ -103,6 +109,9 @@ public class ProductsController implements Initializable {
 
     @FXML
     void openProductDialog(ActionEvent event) {
+        if (UserSession.isUser()) {
+            return;
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/product_dialog.fxml"));
             Parent root = loader.load();
@@ -182,6 +191,9 @@ public class ProductsController implements Initializable {
         HBox.setHgrow(btnEdit, Priority.ALWAYS);
 
         btnEdit.setOnAction(e -> {
+            if (UserSession.isUser()) {
+                return;
+            }
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit_product_dialog.fxml"));
                 Parent root = loader.load();
@@ -206,6 +218,9 @@ public class ProductsController implements Initializable {
         trash.setContent("M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z");
         btnDel.setGraphic(trash);
         btnDel.setOnAction(e -> {
+            if (UserSession.isUser()) {
+                return;
+            }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "আপনি কি এটি মুছতে চান?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.YES) {
@@ -216,8 +231,12 @@ public class ProductsController implements Initializable {
             });
         });
 
-        actions.getChildren().addAll(btnEdit, btnDel);
-        card.getChildren().addAll(header, stats, stockLbl, actions);
+        if (UserSession.isAdmin()) {
+            actions.getChildren().addAll(btnEdit, btnDel);
+            card.getChildren().addAll(header, stats, stockLbl, actions);
+        } else {
+            card.getChildren().addAll(header, stats, stockLbl);
+        }
         return card;
     }
 
@@ -242,7 +261,12 @@ public class ProductsController implements Initializable {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1400, 900));
+            Scene currentScene = stage.getScene();
+            if (currentScene == null) {
+                stage.setScene(new Scene(root, 1400, 900));
+            } else {
+                currentScene.setRoot(root);
+            }
         } catch (IOException e) { e.printStackTrace(); }
     }
 }

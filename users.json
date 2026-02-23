@@ -4,5 +4,17 @@
     "email": "raj@gmail.com",
     "phone": "01912345678",
     "password": "12345678"
+  },
+  {
+    "name": "raj",
+    "email": "abc@gmail.com",
+    "phone": "01912345678",
+    "password": "12345678"
+  },
+  {
+    "name": "aa",
+    "email": "aa",
+    "phone": "aa",
+    "password": "aaaaaaaa"
   }
 ]

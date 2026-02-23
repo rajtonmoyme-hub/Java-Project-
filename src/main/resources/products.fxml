@@ -36,7 +36,7 @@
                         <Label style="-fx-text-fill: #718096;" text="সকল পণ্যের তথ্য ও মূল্য পরিচালনা" />
                     </VBox>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Button onAction="#openProductDialog" styleClass="btn-primary" text="+   নতুন পণ্য" />
+                    <Button fx:id="btnAddProduct" onAction="#openProductDialog" styleClass="btn-primary" text="+   নতুন পণ্য" />
                 </HBox>
 
                 <!-- Search & Filter Section -->

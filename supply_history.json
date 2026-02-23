@@ -11,6 +11,34 @@
     "wastePercent": 23.0,
     "delayHours": 2.0,
     "completed": true,
-    "completedAt": "2026-02-22 22:58"
+    "completedAt": "2026-02-23 12:12"
+  },
+  {
+    "product": "চিনি",
+    "stage": "পরিবহন",
+    "location": "মধুপুর",
+    "region": "রাজশাহী",
+    "amount": "132",
+    "price": "123",
+    "transportMode": "ট্রাক",
+    "efficiency": 85.0,
+    "wastePercent": 12.0,
+    "delayHours": 12.0,
+    "completed": true,
+    "completedAt": "2026-02-21 19:47"
+  },
+  {
+    "product": "চাল",
+    "stage": "খুচরা",
+    "location": "dytdy",
+    "region": "সিলেট",
+    "amount": "647",
+    "price": "89",
+    "transportMode": "ট্রেন",
+    "efficiency": 8.0,
+    "wastePercent": 7.0,
+    "delayHours": 9.0,
+    "completed": true,
+    "completedAt": "2026-02-21 14:51"
   }
 ]

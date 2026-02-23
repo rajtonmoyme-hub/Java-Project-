@@ -34,7 +34,7 @@
                         </VBox>
                         <Region HBox.hgrow="ALWAYS" />
                         <Label styleClass="header-chip" text="Live Monitoring" />
-                        <Button onAction="#openNewImportDialog" styleClass="btn-new-import" text="+   নতুন আমদানি" />
+                        <Button fx:id="btnAddImport" onAction="#openNewImportDialog" styleClass="btn-new-import" text="+   নতুন আমদানি" />
                     </HBox>
 
                     <GridPane hgap="16" vgap="16">

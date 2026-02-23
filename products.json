@@ -1,20 +1,5 @@
 [
   {
-    "nameEn": "wer",
-    "nameBn": "wer",
-    "category": "চাল",
-    "region": "জাতীয়",
-    "unit": "লিটার",
-    "source": "আমদানি",
-    "currentPrice": 12.0,
-    "prevPrice": 12.0,
-    "stock": 12342.0,
-    "importAmount": 123.0,
-    "hoarderStock": 0.0,
-    "hoarderPrice": 0.0,
-    "isEssential": false
-  },
-  {
     "nameEn": "tasfi",
     "nameBn": "tasfi",
     "category": "সবজি",
@@ -30,18 +15,18 @@
     "isEssential": false
   },
   {
-    "nameEn": "rice",
-    "nameBn": "rice",
-    "category": "চাল",
-    "region": "চট্টগ্রাম",
-    "unit": "বস্তা",
+    "nameEn": "rakib",
+    "nameBn": "rakib",
+    "category": "সবজি",
+    "region": "রাজশাহী",
+    "unit": "লিটার",
     "source": "আমদানি",
-    "currentPrice": 12.0,
-    "prevPrice": 10.0,
-    "stock": 1234.0,
+    "currentPrice": 1234.0,
+    "prevPrice": 3231.0,
+    "stock": 123.0,
     "importAmount": 1234.0,
-    "hoarderStock": 1234.0,
-    "hoarderPrice": 1234.0,
+    "hoarderStock": 213.0,
+    "hoarderPrice": 3325.0,
     "isEssential": false
   }
 ]

@@ -33,7 +33,7 @@
                             <Label styleClass="page-subtitle" text="উৎস থেকে ভোক্তা পর্যন্ত ট্র্যাকিং" />
                         </VBox>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button onAction="#openNewEntryDialog" styleClass="btn-new-entry" text="+ নতুন এন্ট্রি" />
+                        <Button fx:id="btnNewEntry" onAction="#openNewEntryDialog" styleClass="btn-new-entry" text="+ নতুন এন্ট্রি" />
                     </HBox>
 
                     <!-- Summary Stats Cards -->

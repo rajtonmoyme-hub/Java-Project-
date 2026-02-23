@@ -2,8 +2,11 @@ package com.example.foodprice;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
+
 import java.util.List;
 
 public class EditProductController {
@@ -17,12 +20,21 @@ public class EditProductController {
     @FXML
     public void initialize() {
         cbCategory.setItems(FXCollections.observableArrayList("চাল", "ডাল", "তেল", "চিনি", "সবজি", "আলু"));
-        cbRegion.setItems(FXCollections.observableArrayList("জাতীয়", "ঢাকা", "চট্টগ্রাম", "রাজশাহী"));
+        cbRegion.setItems(FXCollections.observableArrayList(
+                "জাতীয়",
+                "ঢাকা",
+                "চট্টগ্রাম",
+                "রাজশাহী",
+                "খুলনা",
+                "বরিশাল",
+                "সিলেট",
+                "রংপুর",
+                "ময়মনসিংহ"
+        ));
         cbUnit.setItems(FXCollections.observableArrayList("কেজি", "লিটার", "বস্তা", "টন"));
         cbSource.setItems(FXCollections.observableArrayList("স্থানীয়", "আমদানি"));
     }
 
-    // আগের ডাটা লোড করার মেথড
     public void setProductData(Product p, int index) {
         this.productIndex = index;
         tfNameEn.setText(p.getNameEn());
@@ -44,7 +56,6 @@ public class EditProductController {
     private void handleUpdate() {
         List<Product> products = DataManager.loadProducts();
 
-        // বর্তমান ইনডেক্সের অবজেক্ট আপডেট করা
         Product updatedProduct = new Product(
                 tfNameEn.getText(), tfNameBn.getText(), cbCategory.getValue(), cbRegion.getValue(),
                 Double.parseDouble(tfCurrentPrice.getText()), Double.parseDouble(tfPrevPrice.getText()),
@@ -53,14 +64,23 @@ public class EditProductController {
                 Double.parseDouble(tfHoarderPrice.getText()), btnEssential.isSelected()
         );
 
-        products.set(productIndex, updatedProduct); // লিস্ট আপডেট
-        DataManager.saveProducts(products); // JSON ফাইলে সেভ
+        products.set(productIndex, updatedProduct);
+        DataManager.saveProducts(products);
 
         updateClicked = true;
         closeStage();
     }
 
-    public boolean isUpdateClicked() { return updateClicked; }
-    @FXML private void handleCancel() { closeStage(); }
-    private void closeStage() { ((Stage) tfNameEn.getScene().getWindow()).close(); }
+    public boolean isUpdateClicked() {
+        return updateClicked;
+    }
+
+    @FXML
+    private void handleCancel() {
+        closeStage();
+    }
+
+    private void closeStage() {
+        ((Stage) tfNameEn.getScene().getWindow()).close();
+    }
 }

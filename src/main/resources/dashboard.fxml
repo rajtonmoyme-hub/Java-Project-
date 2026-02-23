@@ -1,413 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.Circle?>
+<?import java.net.URL?>
 
-<BorderPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@css/sidebar.css, @css/dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.DashboardController">
+<BorderPane prefHeight="900.0" prefWidth="1400.0" styleClass="dashboard-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.foodprice.DashboardController">
+
+    <!-- CSS Links -->
+    <stylesheets>
+        <URL value="@css/sidebar.css" />
+        <URL value="@css/dashboard.css" />
+    </stylesheets>
 
     <!-- LEFT SIDEBAR -->
     <left>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #FFFFFF; -fx-border-color: transparent;">
-            <content>
-                <VBox prefWidth="250.0" spacing="5.0" styleClass="sidebar">
-                    <padding>
-                        <Insets bottom="20" left="20" right="20" top="20" />
-                    </padding>
-
-                    <!-- Logo Area -->
-                    <HBox alignment="CENTER_LEFT" spacing="10">
-                        <StackPane style="-fx-background-color: #00A65A; -fx-background-radius: 50; -fx-min-width: 40; -fx-min-height: 40;">
-                            <SVGPath content="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" fill="white" scaleX="0.8" scaleY="0.8" />
-                        </StackPane>
-                        <VBox>
-                            <Label styleClass="logo-text" text="খাদ্য মূল্য" />
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #888;" text="Smart Food Price System" />
-                        </VBox>
-                    </HBox>
-
-                    <Region prefHeight="20" />
-
-                    <!-- Menu Items (ALL 12 BUTTONS) -->
-                    <!-- 1. Dashboard (Active) -->
-                    <Button maxWidth="Infinity" styleClass="menu-button, active" text="Dashboard">
-                        <graphic><SVGPath content="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="white" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 2. Product Management -->
-                    <Button fx:id="btnProducts" maxWidth="Infinity" onAction="#goToProducts" styleClass="menu-button" text="পণ্য ব্যবস্থাপনা">
-                        <graphic><SVGPath content="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h18c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 3. Price Tracker -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="মূল্য ট্র্যাকার">
-                        <graphic><SVGPath content="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 4. Supply Chain -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="সাপ্লাই চেইন">
-                        <graphic><SVGPath content="M20 8h-3V4H3v4h-1v2h1v10h18V10h1V8zM5 18v-8h14v8H5z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 5. Warehouse -->
-                    <Button maxWidth="Infinity" onAction="#goToWarehouse" styleClass="menu-button" text="গুদাম ও মজুদ">
-                        <graphic><SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 6. Import Record -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="আমদানি রেকর্ড">
-                        <graphic><SVGPath content="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 7. Farmer Platform -->
-                    <Button maxWidth="Infinity" onAction="#goToFarmers" styleClass="menu-button" text="কৃষক প্ল্যাটফর্ম">
-                        <graphic><SVGPath content="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 8. Weather Impact -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="আবহাওয়া প্রভাব">
-                        <graphic><SVGPath content="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 9. Alert System -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="অ্যালার্ট সিস্টেম">
-                        <graphic><SVGPath content="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 10. Demand Forecast -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="চাহিদা পূর্বাভাস">
-                        <graphic><SVGPath content="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 11. Reports & Analysis -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="রিপোর্ট ও বিশ্লেষণ">
-                        <graphic><SVGPath content="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <!-- 12. Audit Log -->
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="অডিট লগ">
-                        <graphic><SVGPath content="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="#666" scaleX="0.7" scaleY="0.7" /></graphic>
-                    </Button>
-
-                    <Region VBox.vgrow="ALWAYS" />
-
-                    <VBox alignment="CENTER" spacing="5" style="-fx-background-color: #E8F5E9; -fx-padding: 10; -fx-background-radius: 5;">
-                        <Label style="-fx-text-fill: #00A65A; -fx-font-weight: bold;" text="বাংলাদেশ সরকার" />
-                        <Label style="-fx-font-size: 9px;" text="খাদ্য মন্ত্রণালয় • TCB • DAM" />
-                    </VBox>
-                </VBox>
-            </content>
-        </ScrollPane>
+        <fx:include source="sidebar.fxml" />
     </left>
 
     <!-- MAIN CONTENT -->
     <center>
-        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
-            <VBox spacing="20">
-                <padding>
-                    <Insets bottom="30" left="30" right="30" top="30" />
-                </padding>
+        <ScrollPane fitToWidth="true" styleClass="main-scroll">
+            <VBox spacing="25">
+                <padding><Insets top="20" right="30" bottom="30" left="30" /></padding>
 
-                <!-- Header -->
+                <!-- Top Search & Profile Bar -->
                 <HBox alignment="CENTER_LEFT" spacing="20">
-                    <VBox>
-                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="ড্যাশবোর্ড" />
-                        <Label style="-fx-text-fill: #666;" text="খাদ্য মূল্য ও সাপ্লাই চেইন পর্যবেক্ষণ" />
-                    </VBox>
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Label style="-fx-text-fill: #666; -fx-background-color: white; -fx-padding: 5 10; -fx-background-radius: 20; -fx-border-color: #eee; -fx-border-radius: 20;" text="☁ সর্বশেষ আপডেট: আজ ১০:৩০ AM" />
+                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="search-bar" HBox.hgrow="ALWAYS">
+                        <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#94A3B8" scaleX="0.8" scaleY="0.8"/>
+                        <TextField promptText="অনুসন্ধান করুন..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <StackPane styleClass="icon-btn"><SVGPath content="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" fill="#64748B"/></StackPane>
+                    <StackPane styleClass="icon-btn"><SVGPath content="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" fill="#64748B"/></StackPane>
                 </HBox>
 
-                <!-- Cards Grid -->
-                <GridPane hgap="20" vgap="20">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
-                        <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
-                    </columnConstraints>
+                <!-- GREEN BANNER -->
+                <HBox styleClass="green-banner" alignment="CENTER_LEFT">
+                    <StackPane styleClass="banner-icon-bg">
+                        <SVGPath content="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="#10B981" scaleX="1.2" scaleY="1.2"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label text="ড্যাশবোর্ড" styleClass="banner-title"/>
+                        <Label fx:id="lblBannerDate" text="-" styleClass="banner-date"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="↻ রিফ্রেশ করুন" styleClass="btn-refresh" onAction="#handleRefresh"/>
+                </HBox>
 
-                    <!-- Card 1 (Green) -->
-                    <HBox styleClass="card-main, card-main-green" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="মোট পণ্য" />
-                            <Label fx:id="lblTotalProducts" styleClass="card-main-value" text="0" />
-                            <Label styleClass="card-main-subtext" text="সক্রিয় পণ্য" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="white" />
-                        </StackPane>
-                    </HBox>
-
-                    <!-- Card 2 (Red) -->
-                    <HBox styleClass="card-main, card-main-red" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="গড় মূল্য পরিবর্তন" />
-                            <Label fx:id="lblPriceChange" styleClass="card-main-value" text="0%" />
-                            <Label styleClass="card-main-subtext" text="↑ বৃদ্ধি গত ৭ দিনে" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="white" />
-                        </StackPane>
-                    </HBox>
-
-                    <!-- Card 3 (Orange) -->
-                    <HBox styleClass="card-main, card-main-orange" GridPane.columnIndex="2" GridPane.rowIndex="0">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="জরুরি অ্যালার্ট" />
-                            <Label fx:id="lblAlertCount" styleClass="card-main-value" text="0" />
-                            <Label styleClass="card-main-subtext" text="মোট অ্যালার্ট" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="white" />
-                        </StackPane>
-                    </HBox>
-
-                    <!-- Card 4 (Cyan) -->
-                    <HBox styleClass="card-main, card-main-cyan" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="গুদাম ব্যবহার" />
-                            <Label fx:id="lblWarehouseUsage" styleClass="card-main-value" text="0%" />
-                            <Label styleClass="card-main-subtext" text="৪টি গুদাম" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="white" />
-                        </StackPane>
-                    </HBox>
-
-                    <!-- Row 2 -->
-                    <!-- Card 5 (Blue) -->
-                    <HBox styleClass="card-main, card-main-blue" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="মোট মজুদ" />
-                            <Label fx:id="lblTotalStock" styleClass="card-main-value" text="0" />
-                            <Label styleClass="card-main-subtext" text="মেট্রিক টন" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" fill="white" />
-                        </StackPane>
-                    </HBox>
-
-                    <!-- Card 6 (Teal - Functional) -->
-                    <HBox styleClass="card-main, card-main-teal" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="নিবন্ধিত কৃষক" />
-                            <Label fx:id="lblFarmerCount" styleClass="card-main-value" text="0" />
-                            <Label styleClass="card-main-subtext" text="সরাসরি ডাটা থেকে" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white" />
-                        </StackPane>
-                    </HBox>
-
-                    <!-- Card 7 (Purple) -->
-                    <HBox styleClass="card-main, card-main-purple" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="আমদানি" />
-                            <Label fx:id="lblImportVolume" styleClass="card-main-value" text="0" />
-                            <Label styleClass="card-main-subtext" text="এই মাসে (MT)" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M15 6H9v2h6V6zm0 4H9v2h6v-2zm0 4H9v2h6v-2zM4 2v20h16V2H4zm14 18H6V4h12v16z" fill="white" />
-                        </StackPane>
-                    </HBox>
-
-                    <!-- Card 8 (Indigo) -->
-                    <HBox styleClass="card-main, card-main-indigo" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                            <Label styleClass="card-main-title" text="বাজার স্থিতিশীলতা" />
-                            <Label fx:id="lblStability" styleClass="card-main-value" text="0%" />
-                            <Label styleClass="card-main-subtext" text="জাতীয় গড়" />
-                        </VBox>
-                        <StackPane styleClass="icon-box-dash">
-                            <SVGPath content="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="white" />
-                        </StackPane>
-                    </HBox>
-                    <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                    </rowConstraints>
-                </GridPane>
-                <!-- Charts Section -->
+                <!-- TOP 5 STAT CARDS -->
                 <HBox spacing="20">
-                    <!-- Left Chart -->
-                    <VBox prefHeight="350" styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label styleClass="section-title" text="মূল্য প্রবণতা (৬ মাস)" />
-                        <LineChart fx:id="priceChart" legendSide="BOTTOM">
-                            <xAxis><CategoryAxis label="মাস" /></xAxis>
-                            <yAxis><NumberAxis label="মূল্য" /></yAxis>
-                        </LineChart>
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT"><StackPane styleClass="icon-bg-green"><SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z" fill="#10B981"/></StackPane><Region HBox.hgrow="ALWAYS"/><Label fx:id="lblProductsTrend" text="-" styleClass="trend-up"/></HBox>
+                        <Label text="মোট পণ্য" styleClass="stat-label"/>
+                        <Label fx:id="lblTotalProducts" text="১০" styleClass="stat-value"/>
+                        <Label text="গত মাসের তুলনায়" styleClass="stat-sub"/>
                     </VBox>
 
-                    <!-- Right Map Placeholder -->
-                    <VBox prefHeight="350" prefWidth="450" spacing="10" styleClass="card">
-                        <Label styleClass="section-title" text="বিভাগভিত্তিক বাজার স্থিতিশীলতা" />
-                        <StackPane VBox.vgrow="ALWAYS">
-                            <!-- Simulated Map Blob -->
-                            <SVGPath content="M50 50 Q150 10 250 50 T380 150 Q350 250 250 280 T50 200 Z" fill="#E2E8F0" scaleX="1.2" scaleY="1.2" stroke="#CBD5E0" />
-                            <!-- Dots -->
-                            <Circle fill="#48BB78" radius="12" translateX="-80" translateY="-60" />
-                            <Text text="র" translateX="-80" translateY="-60" />
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT"><StackPane styleClass="icon-bg-blue"><SVGPath content="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="#3B82F6"/></StackPane><Region HBox.hgrow="ALWAYS"/><Label fx:id="lblFarmersTrend" text="-" styleClass="trend-up"/></HBox>
+                        <Label text="মোট কৃষক" styleClass="stat-label"/>
+                        <Label fx:id="lblFarmerCount" text="৮" styleClass="stat-value"/>
+                        <Label text="গত মাসের তুলনায়" styleClass="stat-sub"/>
+                    </VBox>
 
-                            <Circle fill="#ECC94B" radius="12" translateX="10" translateY="10" />
-                            <Text text="চ" translateX="10" translateY="10" />
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT"><StackPane styleClass="icon-bg-teal"><SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="#14B8A6"/></StackPane><Region HBox.hgrow="ALWAYS"/></HBox>
+                        <Label text="মোট গুদাম" styleClass="stat-label"/>
+                        <Label fx:id="lblTotalWarehouses" text="৬" styleClass="stat-value"/>
+                    </VBox>
 
-                            <Circle fill="#ECC94B" radius="12" translateX="80" translateY="40" />
-                            <Text text="চ" translateX="80" translateY="40" />
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT"><StackPane styleClass="icon-bg-orange"><SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.64-2.25 1.64-1.74 0-2.32-.96-2.39-1.8H7.79c.08 1.55 1.05 2.76 2.86 3.12V19h1.8v-1.65c1.69-.36 2.82-1.46 2.82-2.98 0-2.23-1.66-2.99-3.23-3.51z" fill="#F59E0B"/></StackPane><Region HBox.hgrow="ALWAYS"/><Label fx:id="lblStockTrend" text="-" styleClass="trend-down"/></HBox>
+                        <Label text="মোট মজুদ" styleClass="stat-label"/>
+                        <HBox alignment="BASELINE_LEFT" spacing="5"><Label fx:id="lblTotalStock" text="৪,০৩৫" styleClass="stat-value"/><Label text="MT" styleClass="stat-sub"/></HBox>
+                        <Label text="গত সপ্তাহের তুলনায়" styleClass="stat-sub"/>
+                    </VBox>
 
-                            <Circle fill="#ECC94B" radius="12" translateX="-5" translateY="60" />
-                            <Text text="ব" translateX="-5" translateY="60" />
-
-                            <Circle fill="#ED8936" radius="12" translateX="-60" translateY="50" />
-                            <Text text="খ" translateX="-60" translateY="50" />
-                        </StackPane>
-                        <HBox alignment="CENTER" spacing="15">
-                            <HBox alignment="CENTER" spacing="5"><Circle fill="#48BB78" radius="4" /><Label text="স্থিতিশীল" /></HBox>
-                            <HBox alignment="CENTER" spacing="5"><Circle fill="#ECC94B" radius="4" /><Label text="মাঝারি" /></HBox>
-                            <HBox alignment="CENTER" spacing="5"><Circle fill="#ED8936" radius="4" /><Label text="সতর্কতা" /></HBox>
-                            <HBox alignment="CENTER" spacing="5"><Circle fill="#F56565" radius="4" /><Label text="ঝুঁকিপূর্ণ" /></HBox>
-                        </HBox>
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT"><StackPane styleClass="icon-bg-red"><SVGPath content="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="#EF4444"/></StackPane><Region HBox.hgrow="ALWAYS"/></HBox>
+                        <Label text="ঝুঁকিপূর্ণ পণ্য" styleClass="stat-label"/>
+                        <Label fx:id="lblRiskProducts" text="0" styleClass="stat-value"/>
                     </VBox>
                 </HBox>
 
-                <!-- Bottom Lists -->
+                <!-- MIDDLE SECTION (Chart & Quick Actions) -->
                 <HBox spacing="20">
-                    <!-- Product Price List -->
-                    <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label styleClass="section-title" text="প্রধান পণ্যের দাম" />
-
-                        <!-- List Item 1 -->
-                        <HBox styleClass="product-row">
-                            <Label styleClass="rank-badge" text="1" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="মিনিকেট চাল" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="চাল" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳68" /><Label style="-fx-text-fill:red; -fx-font-size:10px" text="↗ +9.7%" /></VBox>
+                    <!-- Left Bar Chart -->
+                    <VBox styleClass="content-card" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <SVGPath content="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#3B82F6"/>
+                            <Label text="অঞ্চলভিত্তিক মজুদ বিতরণ" styleClass="card-title"/>
                         </HBox>
-                        <!-- List Item 2 -->
-                        <HBox styleClass="product-row">
-                            <Label style="-fx-background-color:#00A65A" styleClass="rank-badge" text="2" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="সয়াবিন তেল" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="তেল" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳175" /><Label style="-fx-text-fill:red; -fx-font-size:10px" text="↗ +4.2%" /></VBox>
-                        </HBox>
-                        <!-- List Item 3 -->
-                        <HBox styleClass="product-row">
-                            <Label styleClass="rank-badge" text="3" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="পেঁয়াজ" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="পেঁয়াজ" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳85" /><Label style="-fx-text-fill:red; -fx-font-size:10px" text="↗ +54.5%" /></VBox>
-                        </HBox>
-                        <!-- List Item 4 -->
-                        <HBox styleClass="product-row">
-                            <Label styleClass="rank-badge" text="4" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="চিনি" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="চিনি" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳125" /><Label style="-fx-text-fill:red; -fx-font-size:10px" text="↗ +4.2%" /></VBox>
-                        </HBox>
-                        <!-- List Item 5 -->
-                        <HBox styleClass="product-row">
-                            <Label styleClass="rank-badge" text="5" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="মসুর ডাল" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="ডাল" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳145" /><Label style="-fx-text-fill:red; -fx-font-size:10px" text="↗ +3.6%" /></VBox>
-                        </HBox>
-                        <!-- List Item 6 -->
-                        <HBox styleClass="product-row">
-                            <Label styleClass="rank-badge" text="6" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="আলু" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="আলু" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳35" /><Label style="-fx-text-fill:#00A65A; -fx-font-size:10px" text="↘ -12.5%" /></VBox>
-                        </HBox>
-                        <!-- List Item 7 -->
-                        <HBox styleClass="product-row">
-                            <Label styleClass="rank-badge" text="7" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="গমের আটা" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="গম" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳58" /><Label style="-fx-text-fill:red; -fx-font-size:10px" text="↗ +5.5%" /></VBox>
-                        </HBox>
-                        <!-- List Item 8 -->
-                        <HBox styleClass="product-row">
-                            <Label styleClass="rank-badge" text="8" />
-                            <VBox HBox.hgrow="ALWAYS"><Label style="-fx-font-weight:bold" text="ব্রয়লার মুরগি" /><Label style="-fx-text-fill:#888; -fx-font-size:10px" text="মাংস" /></VBox>
-                            <VBox alignment="CENTER_RIGHT"><Label style="-fx-font-weight:bold" text="৳195" /><Label style="-fx-text-fill:red; -fx-font-size:10px" text="↗ +5.4%" /></VBox>
-                        </HBox>
+                        <BarChart fx:id="regionChart" legendVisible="false" prefHeight="250" styleClass="region-chart">
+                            <xAxis><CategoryAxis/></xAxis>
+                            <yAxis><NumberAxis/></yAxis>
+                        </BarChart>
                     </VBox>
 
-                    <!-- Alerts List -->
-                    <VBox spacing="10" styleClass="card" HBox.hgrow="ALWAYS">
-                        <Label styleClass="section-title" text="সাম্প্রতিক অ্যালার্ট" />
-
-                        <!-- Alert 1 -->
-                        <HBox spacing="10" styleClass="alert-box, alert-critical">
-                            <StackPane><SVGPath content="M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z" fill="#F56565" /></StackPane>
-                            <VBox spacing="3" HBox.hgrow="ALWAYS">
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label style="-fx-font-weight:bold; -fx-text-fill:#C53030" text="পেঁয়াজের দাম অস্বাভাবিক বৃদ্ধি" />
-                                    <Label styleClass="alert-tag, tag-blue" text="তদন্ত চলছে" />
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Label style="-fx-text-fill:#C53030" text="+54.5%" />
-                                </HBox>
-                                <Label style="-fx-font-size:11px; -fx-text-fill:#555" text="গত ৭ দিনে পেঁয়াজের দাম ৫৪% বেড়েছে যা স্বাভাবিক সীমার বাইরে" />
-                            </VBox>
+                    <!-- Right Quick Actions -->
+                    <VBox styleClass="content-card" prefWidth="350" spacing="15">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <SVGPath content="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#10B981"/>
+                            <Label text="দ্রুত কার্যক্রম" styleClass="card-title"/>
                         </HBox>
-
-                        <!-- Alert 2 -->
-                        <HBox spacing="10" styleClass="alert-box, alert-warning">
-                            <StackPane><SVGPath content="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z" fill="#ED8936" /></StackPane>
-                            <VBox spacing="3" HBox.hgrow="ALWAYS">
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label style="-fx-font-weight:bold; -fx-text-fill:#C05621" text="চট্টগ্রামে তেলের মজুদ সংকট" />
-                                    <Label styleClass="alert-tag, tag-purple" text="ব্যবস্থা নেওয়া হয়েছে" />
-                                </HBox>
-                                <Label style="-fx-font-size:11px; -fx-text-fill:#555" text="চট্টগ্রাম বিভাগে সয়াবিন তেলের মজুদ স্বাভাবিকের চেয়ে ৪০% কম" />
-                            </VBox>
-                        </HBox>
-
-                        <!-- Alert 3 -->
-                        <HBox spacing="10" styleClass="alert-box, alert-warning">
-                            <StackPane><SVGPath content="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z" fill="#ED8936" /></StackPane>
-                            <VBox spacing="3" HBox.hgrow="ALWAYS">
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label style="-fx-font-weight:bold; -fx-text-fill:#C05621" text="রাজশাহীতে হোর্ডিং সন্দেহ" />
-                                    <Label styleClass="alert-tag, tag-red" text="নতুন" />
-                                </HBox>
-                                <Label style="-fx-font-size:11px; -fx-text-fill:#555" text="রাজশাহীর একটি গুদামে অস্বাভাবিক হারে চালের মজুদ বৃদ্ধি পেয়েছে" />
-                            </VBox>
-                        </HBox>
-                        <!-- Alert 4 -->
-                        <HBox spacing="10" styleClass="alert-box, alert-info">
-                            <StackPane><SVGPath content="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z" fill="#ECC94B" /></StackPane>
-                            <VBox spacing="3" HBox.hgrow="ALWAYS">
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label style="-fx-font-weight:bold; -fx-text-fill:#B7791F" text="বন্যা সবজি সরবরাহ বিঘ্নিত" />
-                                    <Label styleClass="alert-tag, tag-yellow" text="দেখা হয়েছে" />
-                                </HBox>
-                                <Label style="-fx-font-size:11px; -fx-text-fill:#555" text="সিলেট অঞ্চলে বন্যার কারণে সবজি পরিবহন ব্যাহত হচ্ছে" />
-                            </VBox>
-                        </HBox>
-
-                        <!-- Alert 5 -->
-                        <HBox spacing="10" styleClass="alert-box, alert-info">
-                            <StackPane><SVGPath content="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z" fill="#ECC94B" /></StackPane>
-                            <VBox spacing="3" HBox.hgrow="ALWAYS">
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label style="-fx-font-weight:bold; -fx-text-fill:#B7791F" text="আমদানি মূল্য অসঙ্গতি" />
-                                    <Label styleClass="alert-tag, tag-blue" text="তদন্ত চলছে" />
-                                </HBox>
-                                <Label style="-fx-font-size:11px; -fx-text-fill:#555" text="চিনির ল্যান্ডিং কস্ট ঘোষিত মূল্যের চেয়ে অনেক কম" />
-                            </VBox>
-                        </HBox>
-
+                        <GridPane hgap="10" vgap="10">
+                            <columnConstraints><ColumnConstraints percentWidth="50"/><ColumnConstraints percentWidth="50"/></columnConstraints>
+                            <Button fx:id="btnQuickAddProduct" styleClass="action-btn" text="পণ্য যোগ করুন" onAction="#quickAddProduct" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <graphic><StackPane styleClass="action-icon, bg-green"><SVGPath content="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" fill="white"/></StackPane></graphic>
+                            </Button>
+                            <Button fx:id="btnQuickAddFarmer" styleClass="action-btn" text="কৃষক যোগ করুন" onAction="#quickAddFarmer" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <graphic><StackPane styleClass="action-icon, bg-blue"><SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/></StackPane></graphic>
+                            </Button>
+                            <Button fx:id="btnQuickAddWarehouse" styleClass="action-btn" text="গুদাম যোগ করুন" onAction="#quickAddWarehouse" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                <graphic><StackPane styleClass="action-icon, bg-purple"><SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="white"/></StackPane></graphic>
+                            </Button>
+                            <Button fx:id="btnQuickImportRecord" styleClass="action-btn" text="আমদানি রেকর্ড" onAction="#goToImport" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <graphic><StackPane styleClass="action-icon, bg-teal"><SVGPath content="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="white"/></StackPane></graphic>
+                            </Button>
+                        </GridPane>
                     </VBox>
                 </HBox>
+
+                <!-- BOTTOM SECTION -->
+                <HBox spacing="20">
+                    <!-- Left Table -->
+                    <VBox styleClass="content-card" HBox.hgrow="ALWAYS" spacing="15">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <SVGPath content="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="#3B82F6"/>
+                            <Label text="সাম্প্রতিক আমদানি" styleClass="card-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="সব দেখুন ↗" styleClass="text-link"/>
+                        </HBox>
+                        <!-- Table Header -->
+                        <HBox styleClass="table-header">
+                            <Label text="রেকর্ড আইডি" prefWidth="120"/>
+                            <Label text="পণ্য" prefWidth="100"/>
+                            <Label text="পরিমাণ" prefWidth="100"/>
+                            <Label text="উৎস" prefWidth="100"/>
+                            <Label text="তারিখ" prefWidth="120"/>
+                            <Label text="অবস্থা"/>
+                        </HBox>
+                        <VBox fx:id="importListContainer" spacing="10"/>
+                    </VBox>
+
+                    <!-- Right Risk Alerts -->
+                    <VBox styleClass="content-card" prefWidth="350" spacing="15">
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <SVGPath content="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="#EF4444"/>
+                            <Label text="ঝুঁকি সতর্কতা" styleClass="card-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblRiskBadge" text="0" styleClass="badge-red-circle"/>
+                        </HBox>
+                        <VBox fx:id="alertListContainer" spacing="10"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Warehouse Progress Bars -->
+                <VBox styleClass="content-card" spacing="15">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <SVGPath content="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-6l-2-2z" fill="#10B981"/>
+                        <Label text="গুদাম ধারণক্ষমতা" styleClass="card-title"/>
+                    </HBox>
+                    <VBox fx:id="warehouseProgressContainer" spacing="12"/>
+                </VBox>
+
             </VBox>
         </ScrollPane>
     </center>

@@ -38,6 +38,7 @@ public class SupplyChainController implements Initializable {
     @FXML private VBox entryListContainer;
     @FXML private VBox historyListContainer;
     @FXML private ComboBox<String> productFilterCombo;
+    @FXML private Button btnNewEntry;
 
     @FXML private Label totalAmountLabel;
     @FXML private Label avgEfficiencyLabel;
@@ -68,6 +69,10 @@ public class SupplyChainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (UserSession.isUser() && btnNewEntry != null) {
+            btnNewEntry.setVisible(false);
+            btnNewEntry.setManaged(false);
+        }
         loadAndRender();
     }
 
@@ -171,10 +176,16 @@ public class SupplyChainController implements Initializable {
 
     @FXML
     void openNewEntryDialog(ActionEvent event) {
+        if (UserSession.isUser()) {
+            return;
+        }
         openEntryDialog((Node) event.getSource(), null, -1);
     }
 
     private void openEditEntryDialog(Node source, SupplyEntry entry, int index) {
+        if (UserSession.isUser()) {
+            return;
+        }
         openEntryDialog(source, entry, index);
     }
 
@@ -204,6 +215,9 @@ public class SupplyChainController implements Initializable {
     }
 
     private void completeEntry(int index) {
+        if (UserSession.isUser()) {
+            return;
+        }
         List<SupplyEntry> activeEntries = DataManager.loadSupplyEntries();
         if (index < 0 || index >= activeEntries.size()) {
             return;
@@ -307,9 +321,12 @@ public class SupplyChainController implements Initializable {
             doneAlert.setContentText("এন্ট্রিটি history তে সরানো হয়েছে।");
             doneAlert.showAndWait();
         });
-        actionBox.getChildren().addAll(editBtn, completeBtn);
-
-        row.getChildren().addAll(iconBox, info, details, spacer, priceBox, actionBox);
+        if (UserSession.isAdmin()) {
+            actionBox.getChildren().addAll(editBtn, completeBtn);
+            row.getChildren().addAll(iconBox, info, details, spacer, priceBox, actionBox);
+        } else {
+            row.getChildren().addAll(iconBox, info, details, spacer, priceBox);
+        }
         return row;
     }
 

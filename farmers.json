@@ -76,5 +76,21 @@
     "totalSales": "৳০",
     "score": 50,
     "verified": false
+  },
+  {
+    "name": "rakib",
+    "phone": "📞 01912245678",
+    "nid": "123456",
+    "division": "বরিশাল",
+    "district": "bogura",
+    "upazila": "asdfsdgv",
+    "village": "shatgram",
+    "landAmount": "123 একর",
+    "banking": "নগদ",
+    "account": "12344445",
+    "crops": "rice",
+    "totalSales": "৳০",
+    "score": 50,
+    "verified": false
   }
 ]

@@ -1,14 +1,13 @@
 package com.example.foodprice;
 
-import java.io.Serializable;
-
-public class AdminUser implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class AdminUser {
     private String name;
     private String email;
     private String phone;
     private String password;
+
+    public AdminUser() {
+    }
 
     public AdminUser(String name, String email, String phone, String password) {
         this.name = name;
@@ -17,8 +16,19 @@ public class AdminUser implements Serializable {
         this.password = password;
     }
 
-    public String getName() { return name; }
-    public String getEmail() { return email; }
-    public String getPhone() { return phone; }
-    public String getPassword() { return password; }
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

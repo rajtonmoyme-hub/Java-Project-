@@ -2,8 +2,12 @@ package com.example.foodprice;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
+
 import java.util.List;
 
 public class ProductDialogController {
@@ -16,7 +20,17 @@ public class ProductDialogController {
     @FXML
     public void initialize() {
         cbCategory.setItems(FXCollections.observableArrayList("চাল", "ডাল", "তেল", "চিনি", "সবজি", "মাংস"));
-        cbRegion.setItems(FXCollections.observableArrayList("জাতীয়", "ঢাকা", "চট্টগ্রাম", "রাজশাহী"));
+        cbRegion.setItems(FXCollections.observableArrayList(
+                "জাতীয়",
+                "ঢাকা",
+                "চট্টগ্রাম",
+                "রাজশাহী",
+                "খুলনা",
+                "বরিশাল",
+                "সিলেট",
+                "রংপুর",
+                "ময়মনসিংহ"
+        ));
         cbUnit.setItems(FXCollections.observableArrayList("কেজি", "লিটার", "বস্তা", "টন"));
         cbSource.setItems(FXCollections.observableArrayList("স্থানীয়", "আমদানি"));
 
@@ -42,7 +56,7 @@ public class ProductDialogController {
             );
 
             List<Product> products = DataManager.loadProducts();
-            products.add( newProduct);
+            products.add(newProduct);
             DataManager.saveProducts(products);
 
             saveClicked = true;
@@ -62,6 +76,12 @@ public class ProductDialogController {
         return (text == null || text.isEmpty()) ? 0.0 : Double.parseDouble(text);
     }
 
-    @FXML private void handleCancel() { closeStage(); }
-    private void closeStage() { ((Stage) tfNameEn.getScene().getWindow()).close(); }
+    @FXML
+    private void handleCancel() {
+        closeStage();
+    }
+
+    private void closeStage() {
+        ((Stage) tfNameEn.getScene().getWindow()).close();
+    }
 }

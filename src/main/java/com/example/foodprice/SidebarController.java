@@ -21,14 +21,30 @@ import java.util.ResourceBundle;
 
 public class SidebarController implements Initializable {
 
-    @FXML private VBox sidebarRoot; // FXML এ এই আইডিটি থাকতে হবে
+    @FXML private VBox sidebarRoot;
 
-    // কোন পেজটি অ্যাক্টিভ তা মনে রাখার জন্য স্ট্যাটিক ভেরিয়েবল
+    // যে বাটনগুলো ইউজারদের থেকে লুকানো হবে (FXML এ এই ID গুলো থাকতে হবে)
+    @FXML private Button btnPriceTracker;
+    @FXML private Button btnWeather;
+    @FXML private Button btnAlerts;
+    @FXML private Button btnForecast;
+    @FXML private Button btnReports;
+    @FXML private Button btnAudit;
+
     public static String activeButtonId = "btnDashboard";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // পেজ লোড হওয়ার পর সঠিক বাটনটিকে অ্যাক্টিভ (সবুজ) করবে
+        // Role based visibility
+        if (UserSession.isUser()) {
+            hideMenu(btnPriceTracker);
+            hideMenu(btnWeather);
+            hideMenu(btnAlerts);
+            hideMenu(btnForecast);
+            hideMenu(btnReports);
+            hideMenu(btnAudit);
+        }
+
         Platform.runLater(() -> {
             if (sidebarRoot != null) {
                 Node activeNode = sidebarRoot.lookup("#" + activeButtonId);
@@ -37,6 +53,13 @@ public class SidebarController implements Initializable {
                 }
             }
         });
+    }
+
+    private void hideMenu(Button btn) {
+        if (btn != null) {
+            btn.setVisible(false);
+            btn.setManaged(false);
+        }
     }
 
     @FXML void goToDashboard(ActionEvent event) { navigate(event, "/dashboard.fxml"); }
@@ -54,7 +77,6 @@ public class SidebarController implements Initializable {
 
     private void navigate(ActionEvent event, String fxmlPath) {
         try {
-            // যে বাটনে ক্লিক করা হয়েছে, তার আইডি সেভ করে রাখা হচ্ছে
             Button clickedButton = (Button) event.getSource();
             activeButtonId = clickedButton.getId();
 
