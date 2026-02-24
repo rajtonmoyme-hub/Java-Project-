@@ -34,9 +34,7 @@ public class Warehouse implements Serializable {
         this.hasColdStorage = hasColdStorage;
     }
 
-    // ─────────────────────────────────────────────────
-    //              সবগুলো GETTER মেথড (এরর ফিক্স)
-    // ─────────────────────────────────────────────────
+    // all getter function
 
     public String getName() { return name; }
     public String getOwner() { return owner; } // এই মেথডটি মিসিং ছিল
@@ -50,9 +48,7 @@ public class Warehouse implements Serializable {
     public String getExpiryDate() { return expiryDate; }
     public boolean isHasColdStorage() { return hasColdStorage; }
 
-    // ─────────────────────────────────────────────────
-    //              সবগুলো SETTER মেথড
-    // ─────────────────────────────────────────────────
+    // all setter function
 
     public void setName(String name) { this.name = name; }
     public void setOwner(String owner) { this.owner = owner; }

@@ -1,5 +1,18 @@
 [
   {
+    "name": "roni",
+    "owner": "rroni",
+    "type": "সমবায়",
+    "region": "চট্টগ্রাম",
+    "address": "x fg",
+    "licenseNo": "2345",
+    "contact": "3456",
+    "capacity": 23456.0,
+    "currentStock": 2345.0,
+    "expiryDate": "2026-02-10",
+    "hasColdStorage": true
+  },
+  {
     "name": "rakib",
     "owner": "rakib",
     "type": "সমবায়",

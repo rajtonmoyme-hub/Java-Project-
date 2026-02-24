@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 1000, 700);
-        stage.setTitle("Smart Food Price System");
+        stage.setTitle("Food Price Control & Agriculture Product Management");
         stage.setScene(scene);
         stage.show();
     }

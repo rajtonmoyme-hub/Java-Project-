@@ -17,16 +17,16 @@
   {
     "nameEn": "rakib",
     "nameBn": "rakib",
-    "category": "সবজি",
-    "region": "রাজশাহী",
-    "unit": "লিটার",
+    "category": "ডাল",
+    "region": "রংপুর",
+    "unit": "বস্তা",
     "source": "আমদানি",
-    "currentPrice": 1234.0,
-    "prevPrice": 3231.0,
-    "stock": 123.0,
-    "importAmount": 1234.0,
-    "hoarderStock": 213.0,
-    "hoarderPrice": 3325.0,
+    "currentPrice": 123.0,
+    "prevPrice": 122.0,
+    "stock": 132435.0,
+    "importAmount": 12345.0,
+    "hoarderStock": 1234.0,
+    "hoarderPrice": 120.0,
     "isEssential": false
   }
 ]

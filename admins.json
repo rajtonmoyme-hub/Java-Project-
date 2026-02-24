@@ -10,5 +10,11 @@
     "email": "abc@gmail.com",
     "phone": "01912345678",
     "password": "12345678"
+  },
+  {
+    "name": "rakib",
+    "email": "rakib@gmail.com",
+    "phone": "01912345678",
+    "password": "87654321"
   }
 ]

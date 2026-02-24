@@ -16,5 +16,11 @@
     "email": "aa",
     "phone": "aa",
     "password": "aaaaaaaa"
+  },
+  {
+    "name": "rakib",
+    "email": "rakib@gmail.com",
+    "phone": "01812345678",
+    "password": "87654321"
   }
 ]

@@ -1,5 +1,21 @@
 [
   {
+    "product": "rakib",
+    "source": "Bogura",
+    "category": "চিনি",
+    "quantityMt": 1345.0,
+    "fobPrice": 234.0,
+    "landingCost": 123.0,
+    "port": "বেনাপোল স্থলবন্দর",
+    "date": "2026-03-05",
+    "importerName": "rakib",
+    "licenseNumber": "12345",
+    "lcNumber": "76543",
+    "dutyPaid": 234.0,
+    "customsCleared": true,
+    "status": "যাচাইকৃত"
+  },
+  {
     "product": "nimu",
     "source": "bangladesh",
     "category": "চিনি",

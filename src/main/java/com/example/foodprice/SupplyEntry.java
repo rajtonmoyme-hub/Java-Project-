@@ -3,17 +3,12 @@ package com.example.foodprice;
 import java.io.Serializable;
 
 public class SupplyEntry implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     private String product, stage, location, region, amount, price, transportMode;
     private double efficiency, wastePercent, delayHours;
     private boolean completed;
     private String completedAt;
 
-    public SupplyEntry(String product, String stage, String location, String region, String amount, String price,
-                       String transportMode, double efficiency, double wastePercent, double delayHours) {
-        this(product, stage, location, region, amount, price, transportMode, efficiency, wastePercent, delayHours, false, null);
-    }
 
     public SupplyEntry(String product, String stage, String location, String region, String amount, String price,
                        String transportMode, double efficiency, double wastePercent, double delayHours,

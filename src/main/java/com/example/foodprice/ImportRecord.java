@@ -20,10 +20,6 @@ public class ImportRecord implements Serializable {
     private boolean customsCleared;
     private String status;
 
-    public ImportRecord(String product, String source, String category, double quantityMt, double landingCost,
-                        String port, String date, String status) {
-        this(product, source, category, quantityMt, 0, landingCost, port, date, "", "", "", 0, false, status);
-    }
 
     public ImportRecord(String product, String source, String category, double quantityMt, double fobPrice, double landingCost,
                         String port, String date, String importerName, String licenseNumber, String lcNumber,
